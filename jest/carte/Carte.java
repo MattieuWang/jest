@@ -4,6 +4,7 @@ public class Carte {
     private Integer id;
     private String carteType;
     private String trophie;
+    private Integer joueurId;
     //////
     private String imageLocation;
 
@@ -11,7 +12,9 @@ public class Carte {
         this.id = id;
         this.carteType = carteType;
         this.trophie = trophie;
+        this.joueurId = 0;
     }
+
 
     @Override
     public String toString() {
@@ -19,6 +22,8 @@ public class Carte {
                 "id=" + id +
                 ", carteType='" + carteType + '\'' +
                 ", trophie='" + trophie + '\'' +
+                ", joueurId=" + joueurId +
+                ", imageLocation='" + imageLocation + '\'' +
                 '}';
     }
 
@@ -44,5 +49,13 @@ public class Carte {
 
     public void setCarteType(String carteType) {
         this.carteType = carteType;
+    }
+
+    public Integer getJoueurId() {
+        return joueurId;
+    }
+
+    public void setJoueurId(Integer joueurId) {
+        this.joueurId = joueurId;
     }
 }
