@@ -20,6 +20,7 @@ public class Joueur {
         this.webIp = webIp;
         this.id = id;
         this.carteOffer = cartes;
+        this.jest = new ArrayList<>();
     }
 
     @Override
@@ -34,16 +35,34 @@ public class Joueur {
                 '}'+"\n";
     }
 
-    public void makeOffer()
+    public void ajouterCarte(Carte carte)
     {
-        // mettre le cartesOffer
-        // le premier carte "face-up", le seconde "face-down"
+        carteOffer.add(carte);
+    }
+
+    public void dealCarte()
+    {
 
     }
 
-    public void takeCartes(ArrayList<Carte> allOfferCartes)
+    public void makeOffer(int choix)
+    {
+        // mettre le cartesOffer
+        // le premier carte "face-up", le seconde "face-down"
+        if (choix == 1)     // si le joueur choit la 2eme, on change la position de deux cartes
+        {
+            Carte carte = carteOffer.get(0);
+            carteOffer.set(0,carteOffer.get(1));
+            carteOffer.set(1,carte);
+        }
+    }
+
+    public void takeCartes(Carte newOfferCartes)
     {
         // ajouter un carte a jest
+        System.out.println(newOfferCartes);
+        jest.add(newOfferCartes);
+
     }
 
 
@@ -94,7 +113,7 @@ public class Joueur {
         this.jest = cartes;
     }
 
-    public List<Carte> getCarteOffer() {
+    public ArrayList<Carte> getCarteOffer() {
         return carteOffer;
     }
 
