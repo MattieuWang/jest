@@ -3,46 +3,40 @@ package com.jest.Controller;
 import com.jest.carte.Carte;
 import com.jest.carte.CarteTypes;
 import com.jest.joueur.Joueur;
+import com.jest.joueurVirtuel.JoueurVirtuel;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class Controller {
-    private ArrayList<Carte> cartes;        // cartes dans le paquet
+    private LinkedList<Carte> cartes;        // cartes dans le paquet
     private ArrayList<Carte> cartesOffer;       // cartes a offre
     private ArrayList<Joueur> joueurs;
     private ArrayList<Carte> trophies;
     private Scanner scanner = new Scanner(System.in);
     public Controller()
     {
-        cartes = new ArrayList<Carte>();
+        cartes = new LinkedList<Carte>();
         joueurs = new ArrayList<Joueur>();
         trophies = new ArrayList<Carte>();
         cartesOffer = new ArrayList<>();
         initCartes();
-//        trophies.add(giveRandomCard());     //SET-UP TROPHIES
-//        trophies.add(giveRandomCard());
+//        trophies.add(tirerCarteDessus());     //SET-UP TROPHIES
+//        trophies.add(tirerCarteDessus());
     }
 
     private void initCartes()
     {
         for(CarteTypes c : CarteTypes.values())
         {
-            cartes.add(new Carte(c.getId(),c.getCarteType(),c.getTrophie()));
+            cartes.add(new Carte(c.getId(),c.getCouleur(),c.getValeur(),c.getTrophie()));
         }
     }
 
-    public Carte giveRandomCard(int joueurId)
+    public Carte tirerCarteDessus(int joueurId)
     {
-        Random random = new Random();
-        int randomId = random.nextInt(cartes.size() - 1);
-        Carte carte = cartes.get(randomId);
-        cartes.remove(randomId);
-        //        System.out.println(cartes);
+        Collections.shuffle(cartes);
+        Carte carte = cartes.poll();
         carte.setJoueurId(joueurId);
         return carte;
     }
@@ -53,9 +47,16 @@ public class Controller {
         joueurs.add(new Joueur(joueurs.size()+1,joueurName,webIp,c));
     }
 
+    public void initJoueurVirtuel(String joueurName)
+    {
+        ArrayList<Carte> c = new ArrayList<>();
+        joueurs.add(new JoueurVirtuel(joueurs.size()+1,joueurName,c));
+    }
+
     public void dealCartes()
     {
         // recuperer les cartes "face-up"
+        // mettre le face-up carte dans le paquet
         for (Joueur joueur : joueurs)
         {
             cartes.add(joueur.getCarteOffer().get(0));      // supprose que le 1er carte dans carteOffer est "face up"
@@ -66,8 +67,8 @@ public class Controller {
         for (Joueur joueur : joueurs)
         {
             ArrayList<Carte> ctmp = new ArrayList<>();      // cartes temporelles
-            ctmp.add(giveRandomCard(joueur.getId()));
-            ctmp.add(giveRandomCard(joueur.getId()));
+            ctmp.add(tirerCarteDessus(joueur.getId()));
+            ctmp.add(tirerCarteDessus(joueur.getId()));
             joueur.setCarteOffer(ctmp);
         }
     }
@@ -76,22 +77,23 @@ public class Controller {
     {
         for (Joueur joueur : joueurs)
         {
-            System.out.print(joueur.getName()+" ");
-            System.out.println("choisir un carte deviens face-up: ");
-            listerCartes(joueur.getCarteOffer());
-            int choix_carte;
-            do {
-                System.out.print("entrez votre choix: ");
-                choix_carte = scanner.nextInt();
-            }while (choix_carte != 1 && choix_carte != 2 );
-
-            joueur.makeOffer(choix_carte-1);
-            cartesOffer.add(joueur.getCarteOffer().get(1));     // ajoute la face-up carte au paquet de cartes à offre
+//            System.out.print(joueur.getName()+" ");
+//            System.out.println("choisir un carte deviens face-up: ");
+//            listerCartes(joueur.getCarteOffer());
+//            int choix_carte;
+//            do {
+//                System.out.print("entrez votre choix: ");
+//                choix_carte = scanner.nextInt();
+//            }while (choix_carte != 1 && choix_carte != 2 );
+//
+//            joueur.makeOffer(choix_carte-1);
+//            cartesOffer.add(joueur.getCarteOffer().get(1));     // ajoute la face-up carte au paquet de cartes à offre
+            cartesOffer.add(joueur.makeOffer());
         }
     }
 
 
-    public void listerCartes(ArrayList<Carte> cartes)
+    public void listerCartes(ArrayList<Carte> cartes)       // lister tous les carte de parametre
     {
         for(int i=0;i<cartes.size();i++)
         {
@@ -106,30 +108,30 @@ public class Controller {
         System.out.println("--------DEMANDER LA CARTE--------");
         for (Joueur joueur : joueurs)
         {
-            int carte_choix=0;
-            boolean flag = false;
-            while(!flag)
-            {
-                listerCartes(cartesOffer);
-                System.out.print(joueur.getName()+", ");
-                System.out.print("Choisissez une carte comme votre carte de Jest: ");
-                carte_choix = scanner.nextInt();
-                if(carte_choix>=1 && carte_choix<= cartesOffer.size())
-                {
-                    if(cartesOffer.get(carte_choix-1).getJoueurId() == joueur.getId() && cartesOffer.size()>1)
-                    {
-                        flag = false;
-                        System.out.println("Desolez, vous ne pouviez pas choisir votre carte");
-                    }
-                    else
-                    {
-                        flag = true;
-                    }
-                }
-            }
+//            int carte_choix=0;
+//            boolean flag = false;
+//            while(!flag)
+//            {
+//                listerCartes(cartesOffer);
+//                System.out.print(joueur.getName()+", ");
+//                System.out.print("Choisissez une carte comme votre carte de Jest: ");
+//                carte_choix = scanner.nextInt();
+//                if(carte_choix>=1 && carte_choix<= cartesOffer.size())
+//                {
+//                    if(cartesOffer.get(carte_choix-1).getJoueurId() == joueur.getId() && cartesOffer.size()>1)
+//                    {
+//                        flag = false;
+//                        System.out.println("Desolez, vous ne pouviez pas choisir votre carte");
+//                    }
+//                    else
+//                    {
+//                        flag = true;
+//                    }
+//                }
+//            }
 
-            joueur.takeCartes(cartesOffer.get(carte_choix-1));
-            cartesOffer.remove(carte_choix-1);
+            int choix = joueur.takeCartes(cartesOffer);
+            cartesOffer.remove(choix-1);
             System.out.println();
 
         }
@@ -147,8 +149,9 @@ public class Controller {
 
 
 
-    public void finDeJoue()
+    public void finDeJoue(ArrayList<Carte>trophie)
     {
+        listerCartes(trophie);
         System.out.println("fin de joue");
     }
 

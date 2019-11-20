@@ -4,14 +4,15 @@ import com.jest.carte.Carte;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Joueur {
-    private String name;
-    private String webIp;
-    private ArrayList<Carte> carteOffer;
-    private Integer id;
-    private Integer score;
-    private ArrayList<Carte> jest;
+    protected String name;
+    protected String webIp;
+    protected ArrayList<Carte> carteOffer;
+    protected Integer id;
+    protected Integer score;
+    protected ArrayList<Carte> jest;
     /////
     private String imageLocaiton;
 
@@ -45,17 +46,39 @@ public class Joueur {
 
     }
 
-    public void makeOffer(int choix)
+//    public void makeOffer(int choix)
+//    {
+//        // mettre le cartesOffer
+//        // le premier carte "face-up", le seconde "face-down"
+//        if (choix == 1)     // si le joueur choit la 2eme, on change la position de deux cartes
+//        {
+//            Carte carte = carteOffer.get(0);
+//            carteOffer.set(0,carteOffer.get(1));
+//            carteOffer.set(1,carte);
+//        }
+//    }
+
+    public Carte makeOffer()
     {
-        // mettre le cartesOffer
-        // le premier carte "face-up", le seconde "face-down"
-        if (choix == 1)     // si le joueur choit la 2eme, on change la position de deux cartes
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(name+" ");
+        System.out.println("choisir un carte deviens face-up: ");
+        listerCartes(carteOffer);
+        int choix_carte = 0;
+        do {
+            System.out.print("entrez votre choix: ");
+            choix_carte = scanner.nextInt();
+        }while (choix_carte != 1 && choix_carte != 2 );
+        choix_carte --;
+        if (choix_carte == 1)     // si le joueur choit la 2eme, on change la position de deux cartes
         {
             Carte carte = carteOffer.get(0);
             carteOffer.set(0,carteOffer.get(1));
             carteOffer.set(1,carte);
         }
+        return carteOffer.get(1);
     }
+
 
     public void takeCartes(Carte newOfferCartes)
     {
@@ -66,9 +89,50 @@ public class Joueur {
     }
 
 
+    public int takeCartes(ArrayList<Carte> cartes)
+    {
+        Scanner scanner = new Scanner(System.in);
+        int carte_choix=0;
+        boolean flag = false;
+        while(!flag)
+        {
+                    listerCartes(cartes);
+                System.out.print(name+", ");
+                System.out.print("Choisissez une carte comme votre carte de Jest: ");
+                carte_choix = scanner.nextInt();
+                if(carte_choix>=1 && carte_choix<= cartes.size())
+                {
+                    if(cartes.get(carte_choix-1).getJoueurId() == id && cartes.size()>1)
+                    {
+                        flag = false;
+                        System.out.println("Desolez, vous ne pouviez pas choisir votre carte");
+                    }
+                    else
+                {
+                    flag = true;
+                }
+            }
+        }
+
+        jest.add(cartes.get(carte_choix-1));
+
+        return carte_choix;
+    }
+
+
+
     public void clearCartesOffer()
     {
         carteOffer.clear();
+    }
+
+    public void listerCartes(ArrayList<Carte> cartes)       // lister tous les carte de parametre
+    {
+        for(int i=0;i<cartes.size();i++)
+        {
+            System.out.print(i+1 + " ");
+            System.out.println(cartes.get(i));
+        }
     }
 
 

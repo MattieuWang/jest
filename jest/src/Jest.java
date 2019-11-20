@@ -1,6 +1,11 @@
-package src;
+package com.jest;
 
+import com.jest.Controller.Controller;
+import com.jest.carte.Carte;
+import com.jest.joueur.Joueur;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Jest {
@@ -10,13 +15,16 @@ public class Jest {
         Scanner scanner = new Scanner(System.in);
         Controller controller = new Controller();
         String ordre = "";
-
+        ArrayList<Carte> trophie = new ArrayList<>();
+        trophie.add(controller.tirerCarteDessus(0));
+        trophie.add(controller.tirerCarteDessus(0));
 
         controller.initJoueur("aaa","a");
         controller.initJoueur("bbb","b");
-        controller.initJoueur("ccc","c");
-        Carte c1 = controller.giveRandomCard(0);
-        Carte c2 = controller.giveRandomCard(0);
+//        controller.initJoueur("ccc","c");
+        controller.initJoueurVirtuel("ddd");
+
+//        System.out.println(Arrays.toString(trophie));
 
 
 
@@ -28,8 +36,8 @@ public class Jest {
             {
                 for(Joueur joueur : controller.getJoueurs())
                 {
-                    joueur.ajouterCarte(controller.giveRandomCard(joueur.getId()));
-                    joueur.ajouterCarte(controller.giveRandomCard(joueur.getId()));
+                    joueur.ajouterCarte(controller.tirerCarteDessus(joueur.getId()));
+                    joueur.ajouterCarte(controller.tirerCarteDessus(joueur.getId()));
                 }
             }
             else
@@ -54,7 +62,7 @@ public class Jest {
         }
 
         // fin de joue
-        controller.finDeJoue();
+        controller.finDeJoue(trophie);
 
     }
 }
