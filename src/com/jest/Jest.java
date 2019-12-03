@@ -21,14 +21,15 @@ public class Jest {
         ArrayList<Carte> trophee = new ArrayList<>();
         trophee.add(controller.tirerCarteDessus(0));
         trophee.add(controller.tirerCarteDessus(0));
+        trophee.add(controller.tirerCarteDessus(0));
 
-        controller.initJoueur("Joueur1","a");
-        controller.initJoueur("Joueur2","b");
+        controller.initJoueur("Joueur 1","a");
+        controller.initJoueur("Joueur 2","b");
 //        controller.initJoueur("Joueur3","c");
         controller.initJoueurVirtuel("JoueurV1",strategy);
         controller.setTrophees(trophee);
 
-//        System.out.println(Arrays.toString(trophee));
+        System.out.println(trophee);
 
 
 

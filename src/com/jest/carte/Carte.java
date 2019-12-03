@@ -28,13 +28,11 @@ public class Carte {
 
     @Override
     public String toString() {
-        return "Carte{" +
-                "id=" + id +
-                ", couleur='" + couleur + '\'' +
-                ", trophee='" + trophee + '\'' +
-                ", valeur=" + valeur +
-                ", joueurId=" + joueurId +
-                '}';
+        return valeur +
+        		" de " + 
+        		couleur +
+        		" trophee: " +
+        		trophee;
     }
 
     public String getTrophee() {

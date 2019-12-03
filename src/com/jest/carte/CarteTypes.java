@@ -2,7 +2,7 @@ package com.jest.carte;
 
 public enum CarteTypes {
 
-    // couleur: 0 JOKER, 1 HEART, 2 DIAM, 3 CLUB, 4 SPADE
+    // couleur: 0 JOKER, 1 Coeur, 2 Carreau, 3 Trèfle, 4 Pique
     //
 
 
