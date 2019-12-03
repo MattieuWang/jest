@@ -19,7 +19,7 @@ public enum CarteTypes {
     ;
     private Integer id;
     private int couleur;
-    private String trophie;
+    private String trophee;
     private Integer valeur;
 //    public static final String HEART = "HEART";
 //    public static final String CLUB = "CLUB";
@@ -27,10 +27,10 @@ public enum CarteTypes {
 //    public static final String SPADE = "SPADE";
 //    public static final String JOKE = "JOKER";
 
-    CarteTypes(Integer id, int couleur,Integer valeur, String trophie) {
+    CarteTypes(Integer id, int couleur,Integer valeur, String trophee) {
         this.id = id;
         this.couleur = couleur;
-        this.trophie = trophie;
+        this.trophee = trophee;
         this.valeur = valeur;
     }
 
@@ -42,8 +42,8 @@ public enum CarteTypes {
         return couleur;
     }
 
-    public String getTrophie() {
-        return trophie;
+    public String getTrophee() {
+        return trophee;
     }
 
     public Integer getValeur() {

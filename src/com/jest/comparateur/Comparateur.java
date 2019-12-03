@@ -7,12 +7,12 @@ import com.jest.joueur.Joueur;
 import java.util.ArrayList;
 
 public class Comparateur {
-    public void comparerTrophie(ArrayList<Joueur>joueurs, ArrayList<Carte> trophies)
+    public void comparertrophee(ArrayList<Joueur>joueurs, ArrayList<Carte> trophees)
     {
-        for (Carte trophie : trophies)
+        for (Carte trophee : trophees)
         {
-            System.out.println(trophie.getTrophie());
-            if (trophie.getTrophie() == "BEST_JEST")
+            System.out.println(trophee.getTrophee());
+            if (trophee.getTrophee() == "BEST_JEST")
             {
                 int high_index = 0;
                 int high_value = 0;
@@ -34,12 +34,12 @@ public class Comparateur {
                     }
                 }
 
-                joueurs.get(high_index).recupererCarte(trophie);
-                System.out.println("La trophie est donnée à "+ joueurs.get(high_index).getName());
+                joueurs.get(high_index).recupererCarte(trophee);
+                System.out.println("La trophee est donnée à "+ joueurs.get(high_index).getName());
             }
 
             // BEST NO JOKER
-            if (trophie.getTrophie() == "BEST_JEST_NO_JOKER")
+            if (trophee.getTrophee() == "BEST_JEST_NO_JOKER")
             {
 
                 int high_index = 0;
@@ -64,14 +64,14 @@ public class Comparateur {
                         }
                     }
 
-                    joueurs.get(high_index).recupererCarte(trophie);
-                    System.out.println("La trophie est donnée à "+ joueurs.get(high_index).getName());
+                    joueurs.get(high_index).recupererCarte(trophee);
+                    System.out.println("La trophee est donnée à "+ joueurs.get(high_index).getName());
 
                 }
             }
 
 
-            if (trophie.getTrophie() == "LOWEST")
+            if (trophee.getTrophee() == "LOWEST")
             {
                 int low_index = 0;
                 int low_value = 30;
@@ -85,11 +85,11 @@ public class Comparateur {
                     }
                 }
 
-                joueurs.get(low_index).recupererCarte(trophie);
-                System.out.println("La trophie est donnée à "+ joueurs.get(low_index).getName());
+                joueurs.get(low_index).recupererCarte(trophee);
+                System.out.println("La trophee est donnée à "+ joueurs.get(low_index).getName());
             }
 
-            if (trophie.getTrophie() == "HIGHEST")
+            if (trophee.getTrophee() == "HIGHEST")
             {
                 int high_index = 0;
                 int high_value = 0;
@@ -103,25 +103,25 @@ public class Comparateur {
                     }
                 }
 
-                joueurs.get(high_index).recupererCarte(trophie);
-                System.out.println("La trophie est donnée à "+ joueurs.get(high_index).getName());
+                joueurs.get(high_index).recupererCarte(trophee);
+                System.out.println("La trophee est donnée à "+ joueurs.get(high_index).getName());
             }
 
 
-            if (trophie.getTrophie() == "JOKER")
+            if (trophee.getTrophee() == "JOKER")
             {
                 for (Joueur joueur : joueurs)
                 {
                     if (joueur.getScore().isAvecJoker()) {
-                        joueur.recupererCarte(trophie);
-                        System.out.println("La trophie est donnée à "+ joueur.getName());
+                        joueur.recupererCarte(trophee);
+                        System.out.println("La trophee est donnée à "+ joueur.getName());
                     }
                 }
             }
 
             // MAJORITY
 
-            if (trophie.getTrophie() == "4")
+            if (trophee.getTrophee() == "4")
             {
                 int most_index = 0;
                 int most_value = 0;
@@ -135,11 +135,11 @@ public class Comparateur {
                     }
                 }
 
-                joueurs.get(most_index).recupererCarte(trophie);
-                System.out.println("La trophie est donnée à "+ joueurs.get(most_index).getName());
+                joueurs.get(most_index).recupererCarte(trophee);
+                System.out.println("La trophee est donnée à "+ joueurs.get(most_index).getName());
             }
 
-            if (trophie.getTrophie() == "2")
+            if (trophee.getTrophee() == "2")
             {
                 int most_index = 0;
                 int most_value = 0;
@@ -153,11 +153,11 @@ public class Comparateur {
                     }
                 }
 
-                joueurs.get(most_index).recupererCarte(trophie);
-                System.out.println("La trophie est donnée à "+ joueurs.get(most_index).getName());
+                joueurs.get(most_index).recupererCarte(trophee);
+                System.out.println("La trophee est donnée à "+ joueurs.get(most_index).getName());
             }
 
-            if (trophie.getTrophie() == "3")
+            if (trophee.getTrophee() == "3")
             {
                 int most_index = 0;
                 int most_value = 0;
@@ -171,8 +171,8 @@ public class Comparateur {
                     }
                 }
 
-                joueurs.get(most_index).recupererCarte(trophie);
-                System.out.println("La trophie est donnée à "+ joueurs.get(most_index).getName());
+                joueurs.get(most_index).recupererCarte(trophee);
+                System.out.println("La trophee est donnée à "+ joueurs.get(most_index).getName());
             }
 
         }
@@ -198,7 +198,7 @@ public class Comparateur {
                     joueurs.set(j,joueur);
                 }
                 if (joueurs.get(i).getCarteOffer().get(0).getValeur() == joueurs.get(j).getCarteOffer().get(0).getValeur()
-                        && joueurs.get(i).getCarteOffer().get(0).getColeur() < joueurs.get(j).getCarteOffer().get(0).getColeur())
+                        && joueurs.get(i).getCarteOffer().get(0).getCouleur() < joueurs.get(j).getCarteOffer().get(0).getCouleur())
                 {
                     Joueur joueur = joueurs.get(i);
                     joueurs.set(i,joueurs.get(j));

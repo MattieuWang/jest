@@ -28,21 +28,21 @@ public class JoueurVisitor implements Visitor {
         {
              face_valeur += carte.getValeur();
             // normal point
-            if (carte.getColeur()==4 || carte.getColeur()==3)
+            if (carte.getCouleur()==4 || carte.getCouleur()==3)
             {
                 jest_valeur += carte.getValeur();
             }
 
-            if (carte.getColeur()==2)
+            if (carte.getCouleur()==2)
             {
                 jest_valeur -= carte.getValeur();
             }
 
-            if (carte.getColeur()==0)
+            if (carte.getCouleur()==0)
             {
                 avecJoker = true;
             }
-            if (carte.getColeur()==1)
+            if (carte.getCouleur()==1)
                 nb_heart++;
             if (carte.getValeur() != 1)
                 nb_pas_ace++;
@@ -71,11 +71,11 @@ public class JoueurVisitor implements Visitor {
                 }
                 else
                 {
-                    if (carte.getColeur()==1 && nb_heart < 4)
+                    if (carte.getCouleur()==1 && nb_heart < 4)
                     {
                         jest_valeur -= carte.getValeur();       // 1 2 3 heart avec joker
                     }
-                    if (carte.getColeur()==1 && nb_heart == 4)
+                    if (carte.getCouleur()==1 && nb_heart == 4)
                     {
                         jest_valeur += carte.getValeur();       // 4 heart avec joker
                     }
@@ -86,11 +86,11 @@ public class JoueurVisitor implements Visitor {
         // paire noire
         for (Carte carte : cartes)
         {
-            if (carte.getColeur()==4)
+            if (carte.getCouleur()==4)
             {
                 for (Carte carte1 : cartes)
                 {
-                    if (carte1.getColeur()==3 && carte1.getValeur() == carte.getValeur())
+                    if (carte1.getCouleur()==3 && carte1.getValeur() == carte.getValeur())
                     {
                         face_valeur += 2;
                         jest_valeur += 2;

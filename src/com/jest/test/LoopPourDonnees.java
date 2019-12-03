@@ -26,11 +26,11 @@ public class LoopPourDonnees {
             controller.initJoueurVirtuel("jv2",randomStrategy);
             controller.initJoueurVirtuel("jv3",randomStrategy);
 
-            ArrayList<Carte> trophie = new ArrayList<>();
-            trophie.add(controller.tirerCarteDessus(0));
-            trophie.add(controller.tirerCarteDessus(0));
+            ArrayList<Carte> trophee = new ArrayList<>();
+            trophee.add(controller.tirerCarteDessus(0));
+            trophee.add(controller.tirerCarteDessus(0));
 
-            controller.setTrophies(trophie);
+            controller.setTrophees(trophee);
             int round = 1;
 
             while(controller.getCartes().size()-1>0)     // il y a cartes restants dans le paquet

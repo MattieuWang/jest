@@ -16,7 +16,7 @@ public class Controller {
     private LinkedList<Carte> cartes;        // cartes dans le paquet
     private ArrayList<Carte> cartesOffer;       // cartes a offre
     private ArrayList<Joueur> joueurs;
-    private ArrayList<Carte> trophies;
+    private ArrayList<Carte> trophees;
     private int noteMax = 0;
     private static int foisGagne[] = new int[3];
 
@@ -27,18 +27,18 @@ public class Controller {
     {
         cartes = new LinkedList<Carte>();
         joueurs = new ArrayList<Joueur>();
-        trophies = new ArrayList<Carte>();
+        trophees = new ArrayList<Carte>();
         cartesOffer = new ArrayList<>();
         initCartes();
-//        trophies.add(tirerCarteDessus());     //SET-UP TROPHIES
-//        trophies.add(tirerCarteDessus());
+//        trophees.add(tirerCarteDessus());     //SET-UP tropheeS
+//        trophees.add(tirerCarteDessus());
     }
 
     public void initTous()
     {
         cartes.clear();
         joueurs.clear();
-        trophies.clear();
+        trophees.clear();
         cartesOffer.clear();
         initCartes();
     }
@@ -47,7 +47,7 @@ public class Controller {
     {
         for(CarteTypes c : CarteTypes.values())
         {
-            cartes.add(new Carte(c.getId(),c.getCouleur(),c.getValeur(),c.getTrophie()));
+            cartes.add(new Carte(c.getId(),c.getCouleur(),c.getValeur(),c.getTrophee()));
         }
     }
 
@@ -145,18 +145,18 @@ public class Controller {
 
 
     public void finDeJoue() {
-        listerCartes(trophies);
+        listerCartes(trophees);
 
         for (Joueur joueur : joueurs)
         {
             joueur.accept(visitor);
             System.out.println(joueur.getScore());
         }
-        System.out.println("Donner les trophies");
-        comparateur.comparerTrophie(joueurs,trophies);
+        System.out.println("Donner les trophees");
+        comparateur.comparertrophee(joueurs,trophees);
 
         System.out.println();
-        System.out.println("Apres les trophies");
+        System.out.println("Apres les trophees");
         for (Joueur joueur : joueurs)
         {
             joueur.accept(visitor);
@@ -246,12 +246,12 @@ public class Controller {
         return cartes;
     }
 
-    public ArrayList<Carte> getTrophies() {
-        return trophies;
+    public ArrayList<Carte> getTrophees() {
+        return trophees;
     }
 
-    public void setTrophies(ArrayList<Carte> trophies) {
-        this.trophies = trophies;
+    public void setTrophees(ArrayList<Carte> trophees) {
+        this.trophees = trophees;
     }
 
     public void getFoisGagne()

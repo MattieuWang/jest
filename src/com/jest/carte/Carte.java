@@ -2,26 +2,26 @@ package com.jest.carte;
 
 public class Carte {
     private Integer id;
-    private int coleur;
-    private String trophie;
+    private int couleur;
+    private String trophee;
     private Integer valeur;
     private Integer joueurId;
     //////
     private String imageLocation;
 
-    public Carte(Integer id, int carteType,Integer valeur,String trophie) {
+    public Carte(Integer id, int carteType,Integer valeur,String trophee) {
         this.id = id;
-        this.coleur = carteType;
-        this.trophie = trophie;
+        this.couleur = carteType;
+        this.trophee = trophee;
         this.valeur = valeur;
         this.joueurId = 0;
     }
 
     public Carte(CarteTypes carteTypes)
     {
-        this.coleur = carteTypes.getCouleur();
+        this.couleur = carteTypes.getCouleur();
         this.valeur = carteTypes.getValeur();
-        this.trophie = carteTypes.getTrophie();
+        this.trophee = carteTypes.getTrophee();
         this.joueurId = 0;
         this.id = carteTypes.getId();
     }
@@ -30,19 +30,19 @@ public class Carte {
     public String toString() {
         return "Carte{" +
                 "id=" + id +
-                ", coleur='" + coleur + '\'' +
-                ", trophie='" + trophie + '\'' +
+                ", couleur='" + couleur + '\'' +
+                ", trophee='" + trophee + '\'' +
                 ", valeur=" + valeur +
                 ", joueurId=" + joueurId +
                 '}';
     }
 
-    public String getTrophie() {
-        return trophie;
+    public String getTrophee() {
+        return trophee;
     }
 
-    public void setTrophie(String trophie) {
-        this.trophie = trophie;
+    public void setTrophee(String trophee) {
+        this.trophee = trophee;
     }
 
     public Integer getId() {
@@ -53,12 +53,12 @@ public class Carte {
         this.id = id;
     }
 
-    public int getColeur() {
-        return coleur;
+    public int getCouleur() {
+        return couleur;
     }
 
-    public void setColeur(int coleur) {
-        this.coleur = coleur;
+    public void setCouleur(int couleur) {
+        this.couleur = couleur;
     }
 
     public Integer getJoueurId() {

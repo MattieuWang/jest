@@ -18,25 +18,25 @@ public class Jest {
         Scanner scanner = new Scanner(System.in);
         Controller controller = new Controller();
         String ordre = "";
-        ArrayList<Carte> trophie = new ArrayList<>();
-        trophie.add(controller.tirerCarteDessus(0));
-        trophie.add(controller.tirerCarteDessus(0));
+        ArrayList<Carte> trophee = new ArrayList<>();
+        trophee.add(controller.tirerCarteDessus(0));
+        trophee.add(controller.tirerCarteDessus(0));
 
-        controller.initJoueur("aaa","a");
-        controller.initJoueur("bbb","b");
-//        controller.initJoueur("ccc","c");
-        controller.initJoueurVirtuel("ddd",strategy);
-        controller.setTrophies(trophie);
+        controller.initJoueur("Joueur1","a");
+        controller.initJoueur("Joueur2","b");
+//        controller.initJoueur("Joueur3","c");
+        controller.initJoueurVirtuel("JoueurV1",strategy);
+        controller.setTrophees(trophee);
 
-//        System.out.println(Arrays.toString(trophie));
+//        System.out.println(Arrays.toString(trophee));
 
 
 
-        while(controller.getCartes().size()-1>0)     // il y a cartes restants dans le paquet
+        while(controller.getCartes().size()-1>0)     // tant qu'il y a des cartes dans le paquet
         {
             System.out.println("------TOUR "+ round+"-------");
 
-            if(round == 1)  // le 1er tour    deal cards
+            if(round == 1)  // 1er tour    Distribution des cartes
             {
                 for(Joueur joueur : controller.getJoueurs())
                 {
@@ -50,7 +50,7 @@ public class Jest {
             }
             round ++;
 
-            System.out.println("paquet de cartes: " + controller.getCartes().size());
+            System.out.println("Nombre de cartes dans le paquet: " + controller.getCartes().size());
 
             controller.listerCarteDeJoueur();
 

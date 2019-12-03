@@ -21,13 +21,11 @@ public class DonneeStrategy implements Strategy {
     {
         index = 0;
         donnee = new int[100][11];
-        System.out.println("Donnee Strategie");
         readDonnee();
     }
 
     public void readDonnee()
     {
-        System.out.println("read donnee");
         try {
             CsvReader reader = new CsvReader(FILE);
             while (reader.readRecord())
