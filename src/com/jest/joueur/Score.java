@@ -7,6 +7,10 @@ public class Score {
     private int nb_2;
     private int nb_3;
     private int nb_4;
+    private int value_heart;
+    private int value_diam;
+    private int value_spade;
+    private int value_club;
 
     public Score() {
         face_valeur = 0;
@@ -15,17 +19,25 @@ public class Score {
         nb_2 = 0;
         nb_3 = 0;
         nb_4 = 0;
+        value_club = 0;
+        value_diam = 0;
+        value_heart = 0;
+        value_spade = 0;
 
     }
 
 
-    public Score(int face_valeur, int jest_valeur, boolean avecJoker, int nb_2, int nb_3, int nb_4) {
+    public Score(int face_valeur, int jest_valeur, boolean avecJoker, int nb_2, int nb_3, int nb_4, int value_heart, int value_diam, int value_spade, int value_club) {
         this.face_valeur = face_valeur;
         this.jest_valeur = jest_valeur;
         this.avecJoker = avecJoker;
         this.nb_2 = nb_2;
         this.nb_3 = nb_3;
         this.nb_4 = nb_4;
+        this.value_heart = value_heart;
+        this.value_diam = value_diam;
+        this.value_spade = value_spade;
+        this.value_club = value_club;
     }
 
     public int getFace_valeur() {
@@ -76,14 +88,50 @@ public class Score {
         this.nb_4 = nb_4;
     }
 
+    public int getValue_heart() {
+        return value_heart;
+    }
 
+    public void setValue_heart(int value_heart) {
+        this.value_heart = value_heart;
+    }
+
+    public int getValue_diam() {
+        return value_diam;
+    }
+
+    public void setValue_diam(int value_diam) {
+        this.value_diam = value_diam;
+    }
+
+    public int getValue_spade() {
+        return value_spade;
+    }
+
+    public void setValue_spade(int value_spade) {
+        this.value_spade = value_spade;
+    }
+
+    public int getValue_club() {
+        return value_club;
+    }
+
+    public void setValue_club(int value_club) {
+        this.value_club = value_club;
+    }
 
     @Override
     public String toString() {
         return "Score{" +
-                "face_valeur=" + face_valeur +
-                ", jest_valeur=" + jest_valeur +
+                "jest_valeur=" + jest_valeur +
                 ", avecJoker=" + avecJoker +
+                ", nb_2=" + nb_2 +
+                ", nb_3=" + nb_3 +
+                ", nb_4=" + nb_4 +
+                ", value_heart=" + value_heart +
+                ", value_diam=" + value_diam +
+                ", value_spade=" + value_spade +
+                ", value_club=" + value_club +
                 '}';
     }
 }

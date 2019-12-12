@@ -11,7 +11,7 @@ public class RandomStrategy implements Strategy {
         listerCartes(carteOffer);
         int choix = (int)(Math.random() * 2);
         int out = choix + 1;
-        System.out.println(joueur.getName() + "choit "+ out);
+        System.out.println(joueur.getName() + " choit "+ carteOffer.get(choix));
         if (choix == 1)     // si le joueur choit la 2eme, on change la position de deux cartes
         {
             Carte carte = carteOffer.get(0);
@@ -26,10 +26,20 @@ public class RandomStrategy implements Strategy {
     public int takeCartes(Joueur joueur,ArrayList<Carte> cartes) {
         System.out.println(joueur.getName()+" recupere une carte");
         listerCartes(cartes);
-        int choix = (int)(Math.random() * cartes.size());
+        int choix = 0;
+        if (cartes.size()>1)
+        {
+            choix = (int)(Math.random() * cartes.size());
+
+        }
+        else
+        {
+            choix = 0;
+        }
         int out = choix + 1;
         System.out.println("Joueur Virtuel choit "+out);
         joueur.recupererCarte(cartes.get(choix));
+        System.out.println();
         return choix;
     }
 

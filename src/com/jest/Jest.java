@@ -1,9 +1,11 @@
 package com.jest;
 
 import com.jest.Controller.Controller;
+import com.jest.Controller.ViewController;
 import com.jest.carte.Carte;
 import com.jest.joueur.Joueur;
 import com.jest.strategy.DonneeStrategy;
+import com.jest.strategy.RandomStrategy;
 import com.jest.strategy.Strategy;
 
 import java.util.ArrayList;
@@ -13,19 +15,48 @@ import java.util.Scanner;
 public class Jest {
     public static void main(String[] args) throws Throwable {
         Strategy strategy = new DonneeStrategy();
+        Strategy strategy1 = new RandomStrategy();
         int nbJoueur = 1;
         int round = 1;
         Scanner scanner = new Scanner(System.in);
         Controller controller = new Controller();
+        ViewController viewController = new ViewController();
         String ordre = "";
         ArrayList<Carte> trophie = new ArrayList<>();
-        trophie.add(controller.tirerCarteDessus(0));
-        trophie.add(controller.tirerCarteDessus(0));
 
-        controller.initJoueur("aaa","a");
-        controller.initJoueur("bbb","b");
-//        controller.initJoueur("ccc","c");
-        controller.initJoueurVirtuel("ddd",strategy);
+//        String choix_str = "";
+//        do {
+//            System.out.print("Entrez le nombre de joueur virtuel (2 ou 3): ");
+//            choix_str = scanner.nextLine().trim();
+//        }while (!choix_str.equals("2")&&!choix_str.equals("3"));
+//        nbJoueur = Integer.parseInt(choix_str);
+
+        while (nbJoueur <= 1)
+        {
+            nbJoueur = viewController.getNbJoueurs();
+//            System.out.println(nbJoueur);
+            System.out.print("");
+        }
+
+
+        if (nbJoueur == 2)
+        {
+            trophie.add(controller.tirerCarteDessus(0));
+            trophie.add(controller.tirerCarteDessus(0));
+
+            controller.initJoueur("joueur1","a");
+            controller.initJoueurVirtuel("jv1",strategy);
+            controller.initJoueurVirtuel("jv2",strategy1);
+        }
+        else if (nbJoueur == 3)
+        {
+            trophie.add(controller.tirerCarteDessus(0));
+            controller.initJoueur("joueur1","a");
+            controller.initJoueurVirtuel("jv1",strategy);
+            controller.initJoueurVirtuel("jv2",strategy1);
+            controller.initJoueurVirtuel("jv3",strategy1);
+        }
+
         controller.setTrophies(trophie);
 
 //        System.out.println(Arrays.toString(trophie));

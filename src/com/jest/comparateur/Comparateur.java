@@ -70,18 +70,18 @@ public class Comparateur {
                 }
             }
 
-
-            if (trophie.getTrophie() == "LOWEST")
+    // LOWEST
+            if (trophie.getTrophie() == "LOWESTDIAM")
             {
                 int low_index = 0;
                 int low_value = 30;
 
                 for (int i = 0; i<joueurs.size();i++)
                 {
-                    if (low_value > joueurs.get(i).getScore().getFace_valeur())
+                    if (low_value > joueurs.get(i).getScore().getValue_diam())
                     {
                         low_index = i;
-                        low_value = joueurs.get(i).getScore().getFace_valeur();
+                        low_value = joueurs.get(i).getScore().getValue_diam();
                     }
                 }
 
@@ -89,23 +89,99 @@ public class Comparateur {
                 System.out.println("La trophie est donnée à "+ joueurs.get(low_index).getName());
             }
 
-            if (trophie.getTrophie() == "HIGHEST")
+            if (trophie.getTrophie() == "LOWESTCLUB")
+            {
+                int low_index = 0;
+                int low_value = 30;
+
+                for (int i = 0; i<joueurs.size();i++)
+                {
+                    if (low_value > joueurs.get(i).getScore().getValue_club())
+                    {
+                        low_index = i;
+                        low_value = joueurs.get(i).getScore().getValue_club();
+                    }
+                }
+
+                joueurs.get(low_index).recupererCarte(trophie);
+                System.out.println("La trophie est donnée à "+ joueurs.get(low_index).getName());
+            }
+
+            if (trophie.getTrophie() == "LOWESTSPADE")
+            {
+                int low_index = 0;
+                int low_value = 30;
+
+                for (int i = 0; i<joueurs.size();i++)
+                {
+                    if (low_value > joueurs.get(i).getScore().getValue_spade())
+                    {
+                        low_index = i;
+                        low_value = joueurs.get(i).getScore().getValue_spade();
+                    }
+                }
+
+                joueurs.get(low_index).recupererCarte(trophie);
+                System.out.println("La trophie est donnée à "+ joueurs.get(low_index).getName());
+            }
+
+            // HIGHEST
+
+            if (trophie.getTrophie() == "HIGHESTCLUB")
             {
                 int high_index = 0;
                 int high_value = 0;
 
                 for (int i = 0; i<joueurs.size();i++)
                 {
-                    if (high_value < joueurs.get(i).getScore().getFace_valeur())
+                    if (high_value < joueurs.get(i).getScore().getValue_club())
                     {
                         high_index = i;
-                        high_value = joueurs.get(i).getScore().getFace_valeur();
+                        high_value = joueurs.get(i).getScore().getValue_club();
                     }
                 }
 
                 joueurs.get(high_index).recupererCarte(trophie);
                 System.out.println("La trophie est donnée à "+ joueurs.get(high_index).getName());
             }
+
+            if (trophie.getTrophie() == "HIGHESTSPADE")
+            {
+                int high_index = 0;
+                int high_value = 0;
+
+                for (int i = 0; i<joueurs.size();i++)
+                {
+                    if (high_value < joueurs.get(i).getScore().getValue_spade())
+                    {
+                        high_index = i;
+                        high_value = joueurs.get(i).getScore().getValue_spade();
+                    }
+                }
+
+                joueurs.get(high_index).recupererCarte(trophie);
+                System.out.println("La trophie est donnée à "+ joueurs.get(high_index).getName());
+            }
+
+            if (trophie.getTrophie() == "HIGHESTDIAM")
+            {
+                int high_index = 0;
+                int high_value = 0;
+
+                for (int i = 0; i<joueurs.size();i++)
+                {
+                    if (high_value < joueurs.get(i).getScore().getValue_diam())
+                    {
+                        high_index = i;
+                        high_value = joueurs.get(i).getScore().getValue_diam();
+                    }
+                }
+
+                joueurs.get(high_index).recupererCarte(trophie);
+                System.out.println("La trophie est donnée à "+ joueurs.get(high_index).getName());
+            }
+
+
 
 
             if (trophie.getTrophie() == "JOKER")
@@ -115,6 +191,7 @@ public class Comparateur {
                     if (joueur.getScore().isAvecJoker()) {
                         joueur.recupererCarte(trophie);
                         System.out.println("La trophie est donnée à "+ joueur.getName());
+                        break;
                     }
                 }
             }
@@ -186,10 +263,10 @@ public class Comparateur {
         {
             faceupCartes.add(joueur.getCarteOffer().get(0));
         }
-        Joueur j_face_max = joueurs.get(0);
+        System.out.println(faceupCartes);
         for (int i=0; i < joueurs.size();i++)
         {
-            for (int j = 0;j<joueurs.size();j++)
+            for (int j = i+1;j<joueurs.size();j++)
             {
                 if (joueurs.get(i).getCarteOffer().get(0).getValeur() < joueurs.get(j).getCarteOffer().get(0).getValeur())
                 {
@@ -206,6 +283,8 @@ public class Comparateur {
                 }
             }
         }
+        System.out.println("comparer face up valeur");
+//        System.out.println(joueurs);
 
         return joueurs;
     }

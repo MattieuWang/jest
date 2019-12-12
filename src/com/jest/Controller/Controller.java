@@ -30,8 +30,6 @@ public class Controller {
         trophies = new ArrayList<Carte>();
         cartesOffer = new ArrayList<>();
         initCartes();
-//        trophies.add(tirerCarteDessus());     //SET-UP TROPHIES
-//        trophies.add(tirerCarteDessus());
     }
 
     public void initTous()
@@ -124,6 +122,7 @@ public class Controller {
     {
         System.out.println("--------DEMANDER LA CARTE--------");
         joueurs = comparateur.comparerFaceupValue(joueurs);
+        System.out.println(joueurs);
         for (Joueur joueur : joueurs)
         {
             int choix = joueur.takeCartes(cartesOffer);
@@ -150,7 +149,7 @@ public class Controller {
         for (Joueur joueur : joueurs)
         {
             joueur.accept(visitor);
-            System.out.println(joueur.getScore());
+            System.out.println(joueur.getName()+":"+joueur.getScore());
         }
         System.out.println("Donner les trophies");
         comparateur.comparerTrophie(joueurs,trophies);
@@ -160,7 +159,7 @@ public class Controller {
         for (Joueur joueur : joueurs)
         {
             joueur.accept(visitor);
-            System.out.println(joueur.getScore());
+            System.out.println(joueur.getName()+":"+joueur.getScore());
         }
 
 
@@ -198,7 +197,7 @@ public class Controller {
             }
             if (j_note_max.getJest().size() == 5)
                 writer.write("-1,");
-            for (Carte c : j_note_max.getPileTest())
+            for (Carte c : j_note_max.getFaceup())
             {
                 writer.write(c.getId()+"");
                 writer.write(",");

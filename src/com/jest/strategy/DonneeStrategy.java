@@ -4,8 +4,6 @@ import com.jest.carte.Carte;
 import com.jest.joueur.Joueur;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import com.csvreader.CsvReader;
 
@@ -16,7 +14,6 @@ public class DonneeStrategy implements Strategy {
     private int [][] donnee;
     private int index;
 
-
     public DonneeStrategy()
     {
         index = 0;
@@ -25,7 +22,7 @@ public class DonneeStrategy implements Strategy {
         readDonnee();
     }
 
-    public void readDonnee()
+    private void readDonnee()
     {
         System.out.println("read donnee");
         try {
@@ -34,7 +31,7 @@ public class DonneeStrategy implements Strategy {
             {
                 if (index+1 == donnee.length)
                 {
-                    int newRec[][] = new int[donnee.length+10][11];
+                    int newRec[][] = new int[donnee.length+100][11];
                     System.arraycopy(donnee,0,newRec,0, donnee.length);
                     donnee = newRec;
 //                    System.out.println("--------------------agrandir--------------------");
@@ -43,12 +40,15 @@ public class DonneeStrategy implements Strategy {
                 String record = reader.getRawRecord();
 //                System.out.println(record);
                 String [] recSpt = record.split(",");
-                for (int i=0;i<11;i++)
+                if (Integer.parseInt(recSpt[recSpt.length-1])>=9)
                 {
+                    for (int i=0;i<11;i++)
+                    {
 //                    System.out.println("length: " + recSpt.length);
-                    donnee[index][i] = Integer.parseInt(recSpt[i]);
+                        donnee[index][i] = Integer.parseInt(recSpt[i]);
+                    }
+                    index++;
                 }
-                index++;
             }
 
 
@@ -83,9 +83,11 @@ public class DonneeStrategy implements Strategy {
             carteOffer.set(1,carte);
         }
         joueur.addPileTest(carteOffer.get(0));    // la carte face-up
+        System.out.println(joueur.getName()+" choit "+carteOffer.get(0));
         System.out.println();
         return carteOffer.get(1);       // renenvoie la carte face-down
     }
+
 
     public int takeCartes(Joueur joueur, ArrayList<Carte> cartes) {
         System.out.println(joueur.getName()+" recupere une carte");
@@ -121,6 +123,7 @@ public class DonneeStrategy implements Strategy {
             }
         }
         joueur.recupererCarte(cartes.get(choix));
+        System.out.println();
         return choix;
     }
 
@@ -132,5 +135,4 @@ public class DonneeStrategy implements Strategy {
             System.out.println(cartes.get(i));
         }
     }
-
 }

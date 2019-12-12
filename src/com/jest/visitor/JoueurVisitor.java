@@ -5,9 +5,7 @@ import com.jest.carte.CarteTypes;
 import com.jest.joueur.Joueur;
 import com.jest.joueur.Score;
 
-import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class JoueurVisitor implements Visitor {
     public void visit(Joueur joueur) {
@@ -22,6 +20,12 @@ public class JoueurVisitor implements Visitor {
         int nb_heart = 0;
         int nb_pas_ace = 0;
         int nb_ace = 0;
+
+        int value_club = 0;
+        int value_diam = 0;
+        int value_heart = 0;
+        int value_spade = 0;
+
 
         // couleur: 0 JOKER, 1 HEART, 2 DIAM, 3 CLUB, 4 SPADE
         for (Carte carte : cartes)
@@ -54,7 +58,14 @@ public class JoueurVisitor implements Visitor {
                 nb_3++;
             if (carte.getValeur() == 4)
                 nb_4++;
-
+            if (carte.getColeur()==1 && carte.getValeur() >= value_heart)   // heart
+                value_heart = carte.getValeur();
+            if (carte.getColeur()==2 && carte.getValeur() >= value_diam)   // diam
+                value_diam = carte.getValeur();
+            if (carte.getColeur()==3 && carte.getValeur() >= value_club)   // club
+                value_club = carte.getValeur();
+            if (carte.getColeur()==4 && carte.getValeur() >= value_spade)   // spade
+                value_spade = carte.getValeur();
 
         }
 
@@ -106,7 +117,7 @@ public class JoueurVisitor implements Visitor {
         }
 
 
-        Score score = new Score(face_valeur,jest_valeur,avecJoker,nb_2,nb_3,nb_4);
+        Score score = new Score(face_valeur,jest_valeur,avecJoker,nb_2,nb_3,nb_4,value_heart,value_diam,value_spade,value_club);
         joueur.setScore(score);
     }
 

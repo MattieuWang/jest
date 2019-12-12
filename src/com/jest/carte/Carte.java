@@ -28,13 +28,27 @@ public class Carte {
 
     @Override
     public String toString() {
-        return "Carte{" +
-                "id=" + id +
-                ", coleur='" + coleur + '\'' +
-                ", trophie='" + trophie + '\'' +
-                ", valeur=" + valeur +
-                ", joueurId=" + joueurId +
-                '}';
+        String msg = "";
+        if (coleur == 4)
+            msg += "SPADE";
+        if (coleur == 3)
+            msg += "CLUB";
+        if (coleur == 2)
+            msg += "DIAMOND";
+        if (coleur == 1)
+            msg += "HEART";
+        if (coleur == 0)
+            msg += "JOKER";
+
+        if (valeur != 0)
+        {
+            msg += " "+valeur;
+        }
+
+        msg += " "+trophie;
+
+        return msg;
+
     }
 
     public String getTrophie() {
