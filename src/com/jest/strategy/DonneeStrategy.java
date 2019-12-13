@@ -88,7 +88,7 @@ public class DonneeStrategy implements Strategy {
     public int takeCartes(Joueur joueur, ArrayList<Carte> cartes) {
         System.out.println(joueur.getName()+" recupere une carte");
         listerCartes(cartes);
-        int []counts = new int[3];
+        int []counts = new int[4];
 
         for (int k = 0;k<cartes.size();k++)
         {
