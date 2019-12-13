@@ -233,7 +233,7 @@ public class Controller {
     {
         for (Joueur joueur : joueurs)
         {
-            System.out.println(joueur.getName()+": "+ joueur.getCarteOffer());
+            System.out.println(joueur.getName()+": "+joueur.getCarteOffer());
         }
         System.out.println();
     }

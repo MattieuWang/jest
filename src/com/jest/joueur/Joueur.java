@@ -67,12 +67,12 @@ public class Joueur {
     public Carte makeOffer()
     {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Le " +name+" ");
-        System.out.println("choisit la carte à retourner");
+        System.out.print(name+" ");
+        System.out.println("choisir un carte deviens face-up: ");
         listerCartes(carteOffer);
         int choix_carte = 0;
         do {
-            System.out.print("Entrez votre choix: ");
+            System.out.print("entrez votre choix: ");
             choix_carte = scanner.nextInt();
         }while (choix_carte != 1 && choix_carte != 2 );
         choix_carte --;             // on suppose que le 1er carte est le face-up carte
@@ -134,7 +134,7 @@ public class Joueur {
     {
         for(int i=0;i<cartes.size();i++)
         {
-            System.out.print(i+1 + ") ");
+            System.out.print(i+1 + " ");
             System.out.println(cartes.get(i));
         }
     }
