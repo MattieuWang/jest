@@ -18,17 +18,18 @@ public class LoopPourDonnees {
 
         Controller controller = new Controller();
         int noteSum = 0;
-        while (n<100)
+        while (n<1)
         {
             n++;
 
             controller.initJoueurVirtuel("jv1",donneeStrategy);
             controller.initJoueurVirtuel("jv2",randomStrategy);
             controller.initJoueurVirtuel("jv3",randomStrategy);
+            controller.initJoueurVirtuel("jv4",randomStrategy);
 
             ArrayList<Carte> trophie = new ArrayList<>();
             trophie.add(controller.tirerCarteDessus(0));
-            trophie.add(controller.tirerCarteDessus(0));
+//            trophie.add(controller.tirerCarteDessus(0));
 
             controller.setTrophies(trophie);
             int round = 1;

@@ -18,7 +18,7 @@ public class Controller {
     private ArrayList<Joueur> joueurs;
     private ArrayList<Carte> trophies;
     private int noteMax = 0;
-    private static int foisGagne[] = new int[3];
+    private static int foisGagne[] = new int[4];
 
     private JoueurVisitor visitor = new JoueurVisitor();
     private Comparateur comparateur = new Comparateur();
@@ -180,42 +180,42 @@ public class Controller {
         j_note_max.addGagne();
         foisGagne[j_note_max.getId()-1]++;
 
-        BufferedWriter writer = null;
-        try {
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("resultat.csv",true)));
-
-            for (Carte c : j_note_max.getJest())
-            {
-                writer.write(c.getId()+"");
-                writer.write(",");
-            }
-            if (j_note_max.getJest().size() == 4)
-            {
-
-                writer.write("-1,");
-                writer.write("-1,");
-            }
-            if (j_note_max.getJest().size() == 5)
-                writer.write("-1,");
-            for (Carte c : j_note_max.getFaceup())
-            {
-                writer.write(c.getId()+"");
-                writer.write(",");
-            }
-            writer.write(j_note_max.getScore().getFace_valeur()+"");
-            writer.write("\n");
-            writer.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        finally {
-            try {
-                writer.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+//        BufferedWriter writer = null;
+//        try {
+//            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("resultat.csv",true)));
+//
+//            for (Carte c : j_note_max.getJest())
+//            {
+//                writer.write(c.getId()+"");
+//                writer.write(",");
+//            }
+//            if (j_note_max.getJest().size() == 4)
+//            {
+//
+//                writer.write("-1,");
+//                writer.write("-1,");
+//            }
+//            if (j_note_max.getJest().size() == 5)
+//                writer.write("-1,");
+//            for (Carte c : j_note_max.getFaceup())
+//            {
+//                writer.write(c.getId()+"");
+//                writer.write(",");
+//            }
+//            writer.write(j_note_max.getScore().getFace_valeur()+"");
+//            writer.write("\n");
+//            writer.close();
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        finally {
+//            try {
+//                writer.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
 
         for (Joueur joueur:joueurs)
         {
