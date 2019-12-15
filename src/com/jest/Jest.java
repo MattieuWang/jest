@@ -9,7 +9,6 @@ import com.jest.strategy.RandomStrategy;
 import com.jest.strategy.Strategy;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Jest {
@@ -19,7 +18,7 @@ public class Jest {
         int nbJoueur = 1;
         int round = 1;
         Scanner scanner = new Scanner(System.in);
-        Controller controller = new Controller();
+        Controller controller = Controller.getInstance();
         ViewController viewController = new ViewController();
         String ordre = "";
         ArrayList<Carte> trophie = new ArrayList<>();
@@ -31,12 +30,14 @@ public class Jest {
 //        }while (!choix_str.equals("2")&&!choix_str.equals("3"));
 //        nbJoueur = Integer.parseInt(choix_str);
 
+        viewController.doStartRequire();
         while (nbJoueur <= 1)
         {
             nbJoueur = viewController.getNbJoueurs();
 //            System.out.println(nbJoueur);
             System.out.print("");
         }
+        viewController.finishStartRequire();
 
 
         if (nbJoueur == 2)
@@ -98,6 +99,7 @@ public class Jest {
 
         // fin de joue
         controller.finDeJoue();
+        viewController.doFinDeJeu(controller.getResultat());
 
     }
 }

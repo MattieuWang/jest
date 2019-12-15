@@ -4,14 +4,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
 
 public class StartRequireView extends JPanel {
 
     private JPanel panel;
-    private int choix;
+    private int nbJoueurs;
+    private boolean isOver;
 
     public StartRequireView()
     {
+        isOver = false;
         panel = new JPanel();
         panel.setVisible(false);
         panel.setLayout(new GridLayout(3,1));
@@ -48,25 +51,31 @@ public class StartRequireView extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if (radioBtn1.isSelected())
                 {
-                    choix = 2;      // 2 joueurs virtuels
+                    nbJoueurs = 2;      // 2 joueurs virtuels
                 }
                 if (radioBtn2.isSelected())
                 {
-                    choix = 3;      // 3 joueurs virtuels
+                    nbJoueurs = 3;      // 3 joueurs virtuels
                 }
-                if (radioBtn1.isSelected() || radioBtn2.isSelected())
+                if (radioBtn1.isSelected() || radioBtn2.isSelected()) {
                     panel.setVisible(false);
-                System.out.println(choix);
+                    isOver = true;
+                }
+//                System.out.println(nbJoueurs);
             }
         });
         btnPanel.add(btn_confirm);
+    }
+
+    public boolean isOver() {
+        return isOver;
     }
 
     public JPanel getPanel() {
         return panel;
     }
 
-    public int getChoix() {
-        return choix;
+    public int getNbJoueurs() {
+        return nbJoueurs;
     }
 }
