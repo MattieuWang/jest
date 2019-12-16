@@ -1,11 +1,12 @@
 package com.jest.test;
 
 import com.jest.Controller.ViewController;
+import com.jest.views.FinDeJeuView;
 
 public class ViewTest {
 
     public static void main(String[] args) {
-        ViewController viewController = new ViewController();
+        FinDeJeuView view = new FinDeJeuView();
         
     }
 

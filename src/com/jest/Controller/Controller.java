@@ -233,7 +233,6 @@ public class Controller {
         {
             System.out.println(joueur.getName()+" "+joueur.getGagne());
         }
-
     }
 
     public Object[][] getResultat()
@@ -250,13 +249,11 @@ public class Controller {
                 }
             }
         }
-
         for (int i=0;i<joueurs.size();i++)
         {
             resultat[i][0] = joueurs.get(i).getName();
             resultat[i][1] = joueurs.get(i).getScore().getJest_valeur();
         }
-
         return resultat;
     }
 

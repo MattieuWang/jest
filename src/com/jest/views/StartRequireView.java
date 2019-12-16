@@ -1,5 +1,7 @@
 package com.jest.views;
 
+import com.jest.Controller.ViewController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,6 +13,8 @@ public class StartRequireView extends JPanel {
     private JPanel panel;
     private int nbJoueurs;
     private boolean isOver;
+    private static final int S_HEIGHT = 150;
+    private static final int S_WIDTH = 300;
 
     public StartRequireView()
     {
@@ -18,7 +22,7 @@ public class StartRequireView extends JPanel {
         panel = new JPanel();
         panel.setVisible(false);
         panel.setLayout(new GridLayout(3,1));
-        panel.setBounds(450,200,300,150);
+        panel.setBounds(ViewController.WIDTH/2 - S_WIDTH/2,ViewController.HEIGHT/2 - S_HEIGHT/2,S_WIDTH,S_HEIGHT);
         panel.setBackground(Color.gray);
         panel.setOpaque(true);
 
@@ -71,11 +75,16 @@ public class StartRequireView extends JPanel {
         return isOver;
     }
 
+
     public JPanel getPanel() {
         return panel;
     }
 
     public int getNbJoueurs() {
         return nbJoueurs;
+    }
+
+    public void setNbJoueurs(int nbJoueurs) {
+        this.nbJoueurs = nbJoueurs;
     }
 }

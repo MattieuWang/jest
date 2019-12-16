@@ -22,7 +22,9 @@ public class ViewController {
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 800;
 
-    public ViewController()
+    private static ViewController viewController = null;
+
+    private ViewController()
     {
 //        views = new ViewManager();
         frame = new JFrame();
@@ -34,7 +36,16 @@ public class ViewController {
         frame.setVisible(true);
     }
 
-    private void initViews()
+    public static ViewController getInstance()
+    {
+        if (viewController == null)
+        {
+            viewController = new ViewController();
+        }
+        return viewController;
+    }
+
+    public void initViews()
     {
         cdModels = new LinkedList<>();
         layeredPane = new JLayeredPane();
@@ -50,6 +61,14 @@ public class ViewController {
         initFinDeJeuView();
 
     }
+
+    public void initTous()
+    {
+        startRequireView.setNbJoueurs(0);
+        finDeJeuView.initData();
+        finDeJeuView.initNext();
+    }
+
 
     private void initStartRequireView()
     {
@@ -99,11 +118,28 @@ public class ViewController {
             finDeJeuView.addData((String)resultat[i][0],(Integer)resultat[i][1]);
         }
         finDeJeuView.getPanel().setVisible(true);
+
+        Thread thread = new Thread();
+        while (!finDeJeuView.isNext())
+        {
+            try {
+//                System.out.println("wait");
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        initTous();
     }
 
 
     public int getNbJoueurs()
     {
         return startRequireView.getNbJoueurs();
+    }
+
+
+    public JFrame getFrame() {
+        return frame;
     }
 }
