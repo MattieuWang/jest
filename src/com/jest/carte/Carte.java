@@ -9,12 +9,13 @@ public class Carte {
     //////
     private String imageLocation;
 
-    public Carte(Integer id, int carteType,Integer valeur,String trophie) {
+    public Carte(Integer id, int carteType,Integer valeur,String trophie, String imageLocation) {
         this.id = id;
         this.coleur = carteType;
         this.trophie = trophie;
         this.valeur = valeur;
         this.joueurId = 0;
+        this.imageLocation = imageLocation;
     }
 
     public Carte(CarteTypes carteTypes)
@@ -87,7 +88,15 @@ public class Carte {
         return valeur;
     }
 
-    public void setValeur(Integer valeur) {
+    public String getImageLocation() {
+		return imageLocation;
+	}
+
+	public void setImageLocation(String imageLocation) {
+		this.imageLocation = imageLocation;
+	}
+
+	public void setValeur(Integer valeur) {
         this.valeur = valeur;
     }
 }

@@ -1,4 +1,5 @@
 package com.jest.Controller;
+import com.jest.carte.Carte;
 import com.jest.models.CardModel;
 import com.jest.views.BackgroundView;
 import com.jest.views.FinDeJeuView;
@@ -19,6 +20,7 @@ public class ViewController {
     private FinDeJeuView finDeJeuView;
     private JButton btn_start;
     private CardModel cardRef;
+    private Controller c = Controller.getInstance();
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 800;
 
@@ -34,6 +36,14 @@ public class ViewController {
         initViews();
         frame.setContentPane(layeredPane);
         frame.setVisible(true);
+        initCartesModels(c.getCartes());
+        
+    }
+    public void initCartesModels(LinkedList<Carte> cartes) {
+    	LinkedList<CardModel> cardMod = new LinkedList<CardModel>();
+    	for(Carte carte : cartes) {
+    		cardMod.add(new CardModel((new ImageIcon(carte.getImageLocation())).getImage(), carte));
+    	}
     }
 
     public static ViewController getInstance()

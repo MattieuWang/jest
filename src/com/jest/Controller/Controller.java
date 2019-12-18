@@ -57,7 +57,7 @@ public class Controller {
     {
         for(CarteTypes c : CarteTypes.values())
         {
-            cartes.add(new Carte(c.getId(),c.getCouleur(),c.getValeur(),c.getTrophie()));
+            cartes.add(new Carte(c.getId(),c.getCouleur(),c.getValeur(),c.getTrophie(),c.getImageLocation()));
         }
     }
 
@@ -274,7 +274,7 @@ public class Controller {
         return joueurs;
     }
 
-    public List<Carte> getCartes() {
+    public LinkedList<Carte> getCartes() {
         return cartes;
     }
 
