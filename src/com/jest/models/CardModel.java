@@ -16,8 +16,8 @@ public class CardModel extends JPanel {
 
     public CardModel(Image image, Carte carte) {
         this.carte = carte;
-        this.x=x;
-        this.y=y;
+        this.x=0;
+        this.y=0;
         this.image = image;
         this.w = image.getWidth(null)/SCALE;
         this.h = image.getHeight(null)/SCALE;

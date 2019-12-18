@@ -39,14 +39,14 @@ public class Jest {
 
 
             if (nbJoueur == 2) {
-                trophie.add(controller.tirerCarteDessus(0));
-                trophie.add(controller.tirerCarteDessus(0));
+                trophie.add(controller.tirerCarteDessus(0,0,500));
+                trophie.add(controller.tirerCarteDessus(0, 100, 500));
 
                 controller.initJoueur("joueur1", "a", 50, 25);
                 controller.initJoueurVirtuel("jv1", strategy, 100, 50);
                 controller.initJoueurVirtuel("jv2", strategy1, 150, 75);
             } else if (nbJoueur == 3) {
-                trophie.add(controller.tirerCarteDessus(0));
+                trophie.add(controller.tirerCarteDessus(0,10,0));
                 controller.initJoueur("joueur1", "a", 50, 25);
                 controller.initJoueurVirtuel("jv1", strategy, 100, 50);
                 controller.initJoueurVirtuel("jv2", strategy1, 150, 75);
@@ -65,8 +65,8 @@ public class Jest {
                 if (round == 1)  // le 1er tour    deal cards
                 {
                     for (Joueur joueur : controller.getJoueurs()) {
-                        joueur.ajouterCarte(controller.tirerCarteDessus(joueur.getId()));
-                        joueur.ajouterCarte(controller.tirerCarteDessus(joueur.getId()));
+                        joueur.ajouterCarte(controller.tirerCarteDessus(joueur.getId(),joueur.getPositionJoueurX(), joueur.getPositionJoueurY()));
+                        joueur.ajouterCarte(controller.tirerCarteDessus(joueur.getId(), joueur.getPositionJoueurX() + 100, joueur.getPositionJoueurY()));
                     }
                 } else {
                     controller.dealCartes();
