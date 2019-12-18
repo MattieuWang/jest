@@ -1,6 +1,8 @@
 package com.jest.Controller;
 
 import com.jest.carte.Carte;
+
+import com.jest.models.CardModel;
 import com.jest.carte.CarteTypes;
 import com.jest.comparateur.Comparateur;
 import com.jest.joueur.Joueur;
@@ -10,6 +12,8 @@ import com.jest.visitor.JoueurVisitor;
 
 import java.io.*;
 import java.util.*;
+
+import javax.swing.ImageIcon;
 
 
 public class Controller {
@@ -63,10 +67,12 @@ public class Controller {
 
     public Carte tirerCarteDessus(int joueurId)
     {
+    	ViewController vc = ViewController.getInstance();
         Collections.shuffle(cartes);
-        Carte carte = cartes.poll();
-//        listerCartes(cartes);
+        Carte carte = cartes.poll(); 
+//       listerCartes(cartes);
         carte.setJoueurId(joueurId);
+        vc.afficherCarte(carte);
         return carte;
     }
 

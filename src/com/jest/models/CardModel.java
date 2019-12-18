@@ -21,6 +21,7 @@ public class CardModel extends JPanel {
         this.image = image;
         this.w = image.getWidth(null)/SCALE;
         this.h = image.getHeight(null)/SCALE;
+        setBounds(x, y, w, h);
     }
 
     public CardModel(Image image) {
@@ -35,7 +36,7 @@ public class CardModel extends JPanel {
     {
         this.x = x;
         this.y = y;
-        setBounds(x,y,w+x,h+y);
+        setBounds(x,y,w,h);
         System.out.println(x+"  "+y);
     }
 
@@ -50,7 +51,7 @@ public class CardModel extends JPanel {
 
     @Override
     public void paint(Graphics g) {
-        g.drawImage(this.image,x,y,x+w,y+w,0,0,image.getWidth(null),image.getHeight(null),null);
+        g.drawImage(this.image,0,0,w,h,0,0,image.getWidth(null),image.getHeight(null),null);
 
     }
 }

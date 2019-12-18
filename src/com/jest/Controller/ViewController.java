@@ -21,7 +21,7 @@ public class ViewController {
     private JButton btn_start;
     private CardModel cardRef;
     private Controller c = Controller.getInstance();
-    public static final int WIDTH = 1200;
+    public static final int WIDTH = 1400;
     public static final int HEIGHT = 800;
 
     private static ViewController viewController = null;
@@ -112,7 +112,7 @@ public class ViewController {
     }
     public void finishStartRequire()
     {
-        cardRef.setPosition(100,400);
+        cardRef.setPosition(WIDTH/2 - cardRef.getW(),HEIGHT/2 - cardRef.getH()/2);
         cardRef.setVisible(true);
     }
 
@@ -140,6 +140,10 @@ public class ViewController {
             }
         }
         initTous();
+    }
+    public void afficherCarte(Carte carte) {
+    	CardModel cm = new CardModel(new ImageIcon(carte.getImageLocation()).getImage(), carte);
+    	layeredPane.add(cm,1,2);
     }
 
 
