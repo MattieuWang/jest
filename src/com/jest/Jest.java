@@ -1,9 +1,11 @@
 package com.jest;
 
 import com.jest.Controller.Controller;
+import com.jest.Controller.ViewController;
 import com.jest.carte.Carte;
 import com.jest.joueur.Joueur;
 import com.jest.strategy.DonneeStrategy;
+import com.jest.strategy.RandomStrategy;
 import com.jest.strategy.Strategy;
 
 import java.util.ArrayList;
