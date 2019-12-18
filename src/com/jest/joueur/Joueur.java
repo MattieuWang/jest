@@ -17,8 +17,10 @@ public class Joueur {
     protected int gagne;
     /////
     private String imageLocaiton;
+    private int positionJoueurX;
+    private int positionJoueurY;
 
-    public Joueur(Integer id, String name, String webIp, ArrayList<Carte> cartes) {
+    public Joueur(Integer id, String name, String webIp, ArrayList<Carte> cartes, int x, int y) {
         this.name = name;
         this.webIp = webIp;
         this.id = id;
@@ -27,6 +29,8 @@ public class Joueur {
         this.score = new Score();
         this.faceup = new ArrayList<>();
         this.gagne = 0;
+        this.positionJoueurX = x;
+        this.positionJoueurY = y;
     }
 
     public Joueur() {
@@ -64,7 +68,8 @@ public class Joueur {
     }
 
 
-    public Carte makeOffer()
+
+	public Carte makeOffer()
     {
         Scanner scanner = new Scanner(System.in);
         System.out.print(name+" ");
@@ -229,5 +234,21 @@ public class Joueur {
 
     public void addGagne() {
         this.gagne ++;
-    }
+    }    
+    public int getPositionJoueurX() {
+		return positionJoueurX;
+	}
+
+	public void setPositionJoueurX(int positionJoueurX) {
+		this.positionJoueurX = positionJoueurX;
+	}
+
+	public int getPositionJoueurY() {
+		return positionJoueurY;
+	}
+
+	public void setPositionJoueurY(int positionJoueurY) {
+		this.positionJoueurY = positionJoueurY;
+	}
+
 }

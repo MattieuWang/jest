@@ -16,15 +16,15 @@ public class CardModel extends JPanel {
 
     public CardModel(Image image, Carte carte) {
         this.carte = carte;
-        this.x=0;
-        this.y=0;
+        this.x=x;
+        this.y=y;
         this.image = image;
         this.w = image.getWidth(null)/SCALE;
         this.h = image.getHeight(null)/SCALE;
         setBounds(x, y, w, h);
     }
 
-    public CardModel(Image image) {
+	public CardModel(Image image) {
         this.x=0;
         this.y=0;
         this.image = image;
@@ -48,6 +48,22 @@ public class CardModel extends JPanel {
     {
         return h;
     }
+    public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
 
     @Override
     public void paint(Graphics g) {

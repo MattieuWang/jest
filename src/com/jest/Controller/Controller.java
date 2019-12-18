@@ -65,27 +65,28 @@ public class Controller {
         }
     }
 
-    public Carte tirerCarteDessus(int joueurId)
+    public Carte tirerCarteDessus(int joueurId, int x, int y)
     {
     	ViewController vc = ViewController.getInstance();
         Collections.shuffle(cartes);
         Carte carte = cartes.poll(); 
 //       listerCartes(cartes);
         carte.setJoueurId(joueurId);
-        vc.afficherCarte(carte);
+        vc.afficherCarte(carte, x, y);
         return carte;
+
     }
 
-    public void initJoueur(String joueurName, String webIp)
+    public void initJoueur(String joueurName, String webIp, int x, int y)
     {
         ArrayList<Carte> c = new ArrayList<>();
-        joueurs.add(new Joueur(joueurs.size()+1,joueurName,webIp,c));
+        joueurs.add(new Joueur(joueurs.size()+1,joueurName,webIp,c, x, y));
     }
 
-    public void initJoueurVirtuel(String joueurName, Strategy strategy)
+    public void initJoueurVirtuel(String joueurName, Strategy strategy, int x, int y)
     {
         ArrayList<Carte> c = new ArrayList<>();
-        joueurs.add(new JoueurVirtuel(joueurs.size()+1,joueurName,c,strategy));
+        joueurs.add(new JoueurVirtuel(joueurs.size()+1,joueurName,c,strategy, x, y));
     }
 
     public void dealCartes()
@@ -103,8 +104,8 @@ public class Controller {
         for (Joueur joueur : joueurs)
         {
             ArrayList<Carte> ctmp = new ArrayList<>();      // cartes temporelles
-            ctmp.add(tirerCarteDessus(joueur.getId()));
-            ctmp.add(tirerCarteDessus(joueur.getId()));
+            ctmp.add(tirerCarteDessus(joueur.getId(), joueur.getPositionJoueurX(), joueur.getPositionJoueurY()));
+            ctmp.add(tirerCarteDessus(joueur.getId(), joueur.getPositionJoueurX() + 10, joueur.getPositionJoueurY()));
             joueur.setCarteOffer(ctmp);
         }
     }

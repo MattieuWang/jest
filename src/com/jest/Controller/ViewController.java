@@ -141,8 +141,8 @@ public class ViewController {
         }
         initTous();
     }
-    public void afficherCarte(Carte carte) {
-    	CardModel cm = new CardModel(new ImageIcon(carte.getImageLocation()).getImage(), carte);
+    public void afficherCarte(Carte carte, int x, int y) {
+    	CardModel cm = new CardModel(new ImageIcon(carte.getImageLocation()).getImage(), carte, x, y);
     	layeredPane.add(cm,1,2);
     }
 
