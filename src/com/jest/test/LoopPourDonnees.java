@@ -16,7 +16,7 @@ public class LoopPourDonnees {
         Strategy randomStrategy = new RandomStrategy();
         Strategy donneeStrategy = new DonneeStrategy();
 
-        Controller controller = new Controller();
+        Controller controller = Controller.getInstance();
         int noteSum = 0;
         while (n<1)
         {

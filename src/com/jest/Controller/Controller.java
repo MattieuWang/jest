@@ -19,11 +19,14 @@ public class Controller {
     private ArrayList<Carte> trophees;
     private int noteMax = 0;
     private static int foisGagne[] = new int[4];
+    private Object[][] resultat = new Object[4][2];
 
     private JoueurVisitor visitor = new JoueurVisitor();
     private Comparateur comparateur = new Comparateur();
 
-    public Controller()
+    private static Controller controller = null;
+
+    private Controller()
     {
         cartes = new LinkedList<Carte>();
         joueurs = new ArrayList<Joueur>();
@@ -32,6 +35,15 @@ public class Controller {
         initCartes();
 //        trophees.add(tirerCarteDessus());     //SET-UP tropheeS
 //        trophees.add(tirerCarteDessus());
+    }
+
+    public static Controller getInstance()
+    {
+        if (controller == null)
+        {
+            controller = new Controller();
+        }
+        return controller;
     }
 
     public void initTous()
@@ -222,7 +234,28 @@ public class Controller {
         {
             System.out.println(joueur.getName()+" "+joueur.getGagne());
         }
+    }
 
+    public Object[][] getResultat()
+    {
+        for (int i=0;i<joueurs.size();i++)
+        {
+            for (int j=1;j<joueurs.size();j++)
+            {
+                if (joueurs.get(i).getScore().getJest_valeur() < joueurs.get(j).getScore().getJest_valeur())
+                {
+                    Joueur tmp = joueurs.get(i);
+                    joueurs.set(i,joueurs.get(j));
+                    joueurs.set(j,tmp);
+                }
+            }
+        }
+        for (int i=0;i<joueurs.size();i++)
+        {
+            resultat[i][0] = joueurs.get(i).getName();
+            resultat[i][1] = joueurs.get(i).getScore().getJest_valeur();
+        }
+        return resultat;
     }
 
 
