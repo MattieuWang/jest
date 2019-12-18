@@ -1,4 +1,5 @@
 package com.jest.Controller;
+import com.jest.carte.Carte;
 import com.jest.models.CardModel;
 import com.jest.views.BackgroundView;
 import com.jest.views.FinDeJeuView;
@@ -19,7 +20,8 @@ public class ViewController {
     private FinDeJeuView finDeJeuView;
     private JButton btn_start;
     private CardModel cardRef;
-    public static final int WIDTH = 1200;
+    private Controller c = Controller.getInstance();
+    public static final int WIDTH = 1400;
     public static final int HEIGHT = 800;
 
     private static ViewController viewController = null;
@@ -34,6 +36,14 @@ public class ViewController {
         initViews();
         frame.setContentPane(layeredPane);
         frame.setVisible(true);
+        initCartesModels(c.getCartes());
+        
+    }
+    public void initCartesModels(LinkedList<Carte> cartes) {
+    	LinkedList<CardModel> cardMod = new LinkedList<CardModel>();
+    	for(Carte carte : cartes) {
+    		cardMod.add(new CardModel((new ImageIcon(carte.getImageLocation())).getImage(), carte));
+    	}
     }
 
     public static ViewController getInstance()
@@ -102,7 +112,7 @@ public class ViewController {
     }
     public void finishStartRequire()
     {
-        cardRef.setPosition(100,400);
+        cardRef.setPosition(WIDTH/2 - cardRef.getW(),HEIGHT/2 - cardRef.getH()/2);
         cardRef.setVisible(true);
     }
 
@@ -130,6 +140,10 @@ public class ViewController {
             }
         }
         initTous();
+    }
+    public void afficherCarte(Carte carte) {
+    	CardModel cm = new CardModel(new ImageIcon(carte.getImageLocation()).getImage(), carte);
+    	layeredPane.add(cm,1,2);
     }
 
 
