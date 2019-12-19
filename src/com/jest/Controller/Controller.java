@@ -76,6 +76,17 @@ public class Controller {
         return carte;
 
     }
+    public Carte tirerCarteDessusVirtuelle(int joueurId, int x, int y)
+    {
+    	ViewController vc = ViewController.getInstance();
+        Collections.shuffle(cartes);
+        Carte carte = cartes.poll(); 
+//       listerCartes(cartes);
+        carte.setJoueurId(joueurId);
+        vc.afficherCarteCache(carte,x, y);
+        return carte;
+
+    }
 
     public void initJoueur(String joueurName, String webIp, int x, int y)
     {

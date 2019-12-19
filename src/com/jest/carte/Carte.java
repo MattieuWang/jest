@@ -30,21 +30,23 @@ public class Carte {
     @Override
     public String toString() {
         String msg = "";
-        if (valeur != 0)
+        if (valeur != 0 && valeur != 1)
         {
             msg += " "+valeur;
         }
+        if (valeur == 1)
+        	msg += " As";
         
         if (coleur == 4)
             msg += " de Pique";
         if (coleur == 3)
-            msg += " de Trêfle";
+            msg += " de Trèfle";
         if (coleur == 2)
             msg += " de Carreau";
         if (coleur == 1)
             msg += " de Coeur";
         if (coleur == 0)
-            msg += "JOKER";
+            msg += " JOKER";
         
         msg += " avec le trophée " + trophie;
 

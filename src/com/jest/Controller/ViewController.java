@@ -20,7 +20,10 @@ public class ViewController {
     private FinDeJeuView finDeJeuView;
     private JButton btn_start;
     private CardModel cardRef;
-    private Controller c = Controller.getInstance();
+
+
+
+	private Controller c = Controller.getInstance();
     public static final int WIDTH = 1400;
     public static final int HEIGHT = 800;
 
@@ -145,7 +148,13 @@ public class ViewController {
     	CardModel cm = new CardModel(new ImageIcon(carte.getImageLocation()).getImage(), carte);
     	cm.setX(x);
     	cm.setY(y);
-    	layeredPane.add(cm,1,2);
+    	layeredPane.add(cm,1,5);
+    }
+    public void afficherCarteCache(Carte carte,int x, int y) {
+    	CardModel cm = new CardModel(new ImageIcon("src/images/cardRef.jpg").getImage(), carte);
+    	cm.setX(x);
+    	cm.setY(y);
+    	layeredPane.add(cm,1,5);
     }
 
 
@@ -158,4 +167,7 @@ public class ViewController {
     public JFrame getFrame() {
         return frame;
     }
+    public CardModel getCardRef() {
+		return cardRef;
+	}
 }

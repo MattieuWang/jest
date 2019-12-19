@@ -4,6 +4,7 @@ import com.jest.Controller.Controller;
 import com.jest.Controller.ViewController;
 import com.jest.carte.Carte;
 import com.jest.joueur.Joueur;
+import com.jest.joueurVirtuel.JoueurVirtuel;
 import com.jest.strategy.DonneeStrategy;
 import com.jest.strategy.RandomStrategy;
 import com.jest.strategy.Strategy;
@@ -39,10 +40,10 @@ public class Jest {
 
 
             if (nbJoueur == 2) {
-                trophie.add(controller.tirerCarteDessus(0,0,500));
-                trophie.add(controller.tirerCarteDessus(0, 100, 500));
+                trophie.add(controller.tirerCarteDessus(0, 400, 0));
+                trophie.add(controller.tirerCarteDessus(0, 550, 0));
 
-                controller.initJoueur("joueur1", "a", 50, 25);
+                controller.initJoueur("joueur1", "a", 960, 200);
                 controller.initJoueurVirtuel("jv1", strategy, 100, 50);
                 controller.initJoueurVirtuel("jv2", strategy1, 150, 75);
             } else if (nbJoueur == 3) {
@@ -65,8 +66,13 @@ public class Jest {
                 if (round == 1)  // le 1er tour    deal cards
                 {
                     for (Joueur joueur : controller.getJoueurs()) {
-                        joueur.ajouterCarte(controller.tirerCarteDessus(joueur.getId(),joueur.getPositionJoueurX(), joueur.getPositionJoueurY()));
-                        joueur.ajouterCarte(controller.tirerCarteDessus(joueur.getId(), joueur.getPositionJoueurX() + 100, joueur.getPositionJoueurY()));
+                    	if(joueur instanceof JoueurVirtuel) {
+                        	joueur.ajouterCarte(controller.tirerCarteDessusVirtuelle(joueur.getId(),joueur.getPositionJoueurX(), joueur.getPositionJoueurY()));
+                        	joueur.ajouterCarte(controller.tirerCarteDessusVirtuelle(joueur.getId(), joueur.getPositionJoueurX() + 150, joueur.getPositionJoueurY()));
+                    	}else {
+                    		joueur.ajouterCarte(controller.tirerCarteDessus(joueur.getId(),joueur.getPositionJoueurX(), joueur.getPositionJoueurY()));
+                        	joueur.ajouterCarte(controller.tirerCarteDessus(joueur.getId(), joueur.getPositionJoueurX() + 150, joueur.getPositionJoueurY()));
+                    	}
                     }
                 } else {
                     controller.dealCartes();
