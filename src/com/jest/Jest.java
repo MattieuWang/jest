@@ -40,12 +40,12 @@ public class Jest {
 
 
             if (nbJoueur == 2) {
-                trophie.add(controller.tirerCarteDessus(0, 400, 0));
-                trophie.add(controller.tirerCarteDessus(0, 480, 0));
+                trophie.add(controller.tirerCarteDessus(0, 520, 10));
+                trophie.add(controller.tirerCarteDessus(0, 600, 10));
 
-                controller.initJoueur("joueur1", "a", 960, 200);
-                controller.initJoueurVirtuel("jv1", strategy, 100, 200);
-                controller.initJoueurVirtuel("jv2", strategy1, 300, 400);
+                controller.initJoueur("joueur1", "a", 600, 550);
+                controller.initJoueurVirtuel("jv1", strategy, 200, 200);
+                controller.initJoueurVirtuel("jv2", strategy1, 1000, 200);
             } else if (nbJoueur == 3) {
                 trophie.add(controller.tirerCarteDessus(0,400,0));
                 controller.initJoueur("joueur1", "a", 960, 200);
