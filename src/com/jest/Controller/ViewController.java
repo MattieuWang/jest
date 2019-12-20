@@ -146,14 +146,12 @@ public class ViewController {
     }
     public void afficherCarte(Carte carte, int x, int y) {
     	CardModel cm = new CardModel(new ImageIcon(carte.getImageLocation()).getImage(), carte);
-    	cm.setX(x);
-    	cm.setY(y);
+    	cm.setPosition(x, y);
     	layeredPane.add(cm,1,5);
     }
     public void afficherCarteCache(Carte carte,int x, int y) {
-    	CardModel cm = new CardModel(new ImageIcon("src/images/cardRef.jpg").getImage(), carte);
-    	cm.setX(x);
-    	cm.setY(y);
+    	CardModel cm = new CardModel(new ImageIcon("src/images/face_cachee.png").getImage(), carte);
+    	cm.setPosition(x, y);
     	layeredPane.add(cm,1,5);
     }
 

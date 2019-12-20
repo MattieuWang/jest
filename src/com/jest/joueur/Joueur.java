@@ -16,7 +16,7 @@ public class Joueur {
     protected ArrayList<Carte> faceup;
     protected int gagne;
     /////
-    private String imageLocaiton;
+    private String imageLocation;
     private int positionJoueurX;
     private int positionJoueurY;
 

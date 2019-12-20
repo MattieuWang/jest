@@ -41,17 +41,17 @@ public class Jest {
 
             if (nbJoueur == 2) {
                 trophie.add(controller.tirerCarteDessus(0, 400, 0));
-                trophie.add(controller.tirerCarteDessus(0, 550, 0));
+                trophie.add(controller.tirerCarteDessus(0, 480, 0));
 
                 controller.initJoueur("joueur1", "a", 960, 200);
-                controller.initJoueurVirtuel("jv1", strategy, 100, 50);
-                controller.initJoueurVirtuel("jv2", strategy1, 150, 75);
+                controller.initJoueurVirtuel("jv1", strategy, 100, 200);
+                controller.initJoueurVirtuel("jv2", strategy1, 300, 400);
             } else if (nbJoueur == 3) {
-                trophie.add(controller.tirerCarteDessus(0,10,0));
-                controller.initJoueur("joueur1", "a", 50, 25);
-                controller.initJoueurVirtuel("jv1", strategy, 100, 50);
-                controller.initJoueurVirtuel("jv2", strategy1, 150, 75);
-                controller.initJoueurVirtuel("jv3", strategy1, 200, 100);
+                trophie.add(controller.tirerCarteDessus(0,400,0));
+                controller.initJoueur("joueur1", "a", 960, 200);
+                controller.initJoueurVirtuel("jv1", strategy, 100, 200);
+                controller.initJoueurVirtuel("jv2", strategy1, 300, 400);
+                controller.initJoueurVirtuel("jv3", strategy1, 500, 600);
             }
 
             controller.setTrophies(trophie);
@@ -67,11 +67,11 @@ public class Jest {
                 {
                     for (Joueur joueur : controller.getJoueurs()) {
                     	if(joueur instanceof JoueurVirtuel) {
-                        	joueur.ajouterCarte(controller.tirerCarteDessusVirtuelle(joueur.getId(),joueur.getPositionJoueurX(), joueur.getPositionJoueurY()));
-                        	joueur.ajouterCarte(controller.tirerCarteDessusVirtuelle(joueur.getId(), joueur.getPositionJoueurX() + 150, joueur.getPositionJoueurY()));
+                        	joueur.ajouterCarte(controller.tirerCarteDessusVirtuelle(joueur.getId(),joueur.getPositionJoueurX() - 40, joueur.getPositionJoueurY()));
+                        	joueur.ajouterCarte(controller.tirerCarteDessusVirtuelle(joueur.getId(), joueur.getPositionJoueurX() + 40, joueur.getPositionJoueurY()));
                     	}else {
-                    		joueur.ajouterCarte(controller.tirerCarteDessus(joueur.getId(),joueur.getPositionJoueurX(), joueur.getPositionJoueurY()));
-                        	joueur.ajouterCarte(controller.tirerCarteDessus(joueur.getId(), joueur.getPositionJoueurX() + 150, joueur.getPositionJoueurY()));
+                    		joueur.ajouterCarte(controller.tirerCarteDessus(joueur.getId(),joueur.getPositionJoueurX() - 40, joueur.getPositionJoueurY()));
+                        	joueur.ajouterCarte(controller.tirerCarteDessus(joueur.getId(), joueur.getPositionJoueurX() + 40, joueur.getPositionJoueurY()));
                     	}
                     }
                 } else {
