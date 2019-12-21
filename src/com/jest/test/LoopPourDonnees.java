@@ -22,13 +22,13 @@ public class LoopPourDonnees {
         {
             n++;
 
-            controller.initJoueurVirtuel("jv1",donneeStrategy, 100, 200);
-            controller.initJoueurVirtuel("jv2",randomStrategy, 200, 300);
-            controller.initJoueurVirtuel("jv3",randomStrategy, 300, 400);
-            controller.initJoueurVirtuel("jv4",randomStrategy, 400, 500);
+            controller.initJoueurVirtuel("jv1",donneeStrategy);
+            controller.initJoueurVirtuel("jv2",randomStrategy);
+            controller.initJoueurVirtuel("jv3",randomStrategy);
+            controller.initJoueurVirtuel("jv4",randomStrategy);
 
             ArrayList<Carte> trophie = new ArrayList<>();
-            trophie.add(controller.tirerCarteDessus(0,0,0));
+            trophie.add(controller.tirerCarteDessus(0));
 //            trophie.add(controller.tirerCarteDessus(0));
 
             controller.setTrophies(trophie);
@@ -42,8 +42,8 @@ public class LoopPourDonnees {
                 {
                     for(Joueur joueur : controller.getJoueurs())
                     {
-                        joueur.ajouterCarte(controller.tirerCarteDessus(joueur.getId(),joueur.getPositionJoueurX(), joueur.getPositionJoueurY()));
-                        joueur.ajouterCarte(controller.tirerCarteDessus(joueur.getId(),joueur.getPositionJoueurX() + 100, joueur.getPositionJoueurY()));
+                        joueur.ajouterCarte(controller.tirerCarteDessus(joueur.getId()));
+                        joueur.ajouterCarte(controller.tirerCarteDessus(joueur.getId()));
                     }
                 }
                 else

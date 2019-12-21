@@ -1,8 +1,6 @@
 package com.jest.Controller;
 
 import com.jest.carte.Carte;
-
-import com.jest.models.CardModel;
 import com.jest.carte.CarteTypes;
 import com.jest.comparateur.Comparateur;
 import com.jest.joueur.Joueur;
@@ -10,10 +8,7 @@ import com.jest.joueurVirtuel.JoueurVirtuel;
 import com.jest.strategy.Strategy;
 import com.jest.visitor.JoueurVisitor;
 
-import java.io.*;
 import java.util.*;
-
-import javax.swing.ImageIcon;
 
 
 public class Controller {
@@ -27,6 +22,8 @@ public class Controller {
 
     private JoueurVisitor visitor = new JoueurVisitor();
     private Comparateur comparateur = new Comparateur();
+
+    public static int nbJoueurDansJeu = 0;
 
     private static Controller controller = null;
 
@@ -61,43 +58,31 @@ public class Controller {
     {
         for(CarteTypes c : CarteTypes.values())
         {
-            cartes.add(new Carte(c.getId(),c.getCouleur(),c.getValeur(),c.getTrophie(),c.getImageLocation()));
+            cartes.add(new Carte(c.getId(),c.getCouleur(),c.getValeur(),c.getTrophie()));
         }
     }
 
-    public Carte tirerCarteDessus(int joueurId, int x, int y)
+    public Carte tirerCarteDessus(int joueurId)
     {
-    	ViewController vc = ViewController.getInstance();
         Collections.shuffle(cartes);
-        Carte carte = cartes.poll(); 
-//       listerCartes(cartes);
+        Carte carte = cartes.poll();
+//        listerCartes(cartes);
         carte.setJoueurId(joueurId);
-        vc.afficherCarte(carte, x, y);
         return carte;
-
-    }
-    public Carte tirerCarteDessusVirtuelle(int joueurId, int x, int y)
-    {
-    	ViewController vc = ViewController.getInstance();
-        Collections.shuffle(cartes);
-        Carte carte = cartes.poll(); 
-//       listerCartes(cartes);
-        carte.setJoueurId(joueurId);
-        vc.afficherCarteCache(carte,x, y);
-        return carte;
-
     }
 
-    public void initJoueur(String joueurName, String webIp, int x, int y)
+    public void initJoueur(String joueurName)
     {
+        nbJoueurDansJeu++;
         ArrayList<Carte> c = new ArrayList<>();
-        joueurs.add(new Joueur(joueurs.size()+1,joueurName,webIp,c, x, y));
+        joueurs.add(new Joueur(joueurs.size()+1,joueurName,c));
     }
 
-    public void initJoueurVirtuel(String joueurName, Strategy strategy, int x, int y)
+    public void initJoueurVirtuel(String joueurName, Strategy strategy)
     {
+        nbJoueurDansJeu++;
         ArrayList<Carte> c = new ArrayList<>();
-        joueurs.add(new JoueurVirtuel(joueurs.size()+1,joueurName,c,strategy, x, y));
+        joueurs.add(new JoueurVirtuel(joueurs.size()+1,joueurName,c,strategy));
     }
 
     public void dealCartes()
@@ -115,8 +100,8 @@ public class Controller {
         for (Joueur joueur : joueurs)
         {
             ArrayList<Carte> ctmp = new ArrayList<>();      // cartes temporelles
-            ctmp.add(tirerCarteDessus(joueur.getId(), joueur.getPositionJoueurX(), joueur.getPositionJoueurY()));
-            ctmp.add(tirerCarteDessus(joueur.getId(), joueur.getPositionJoueurX() + 10, joueur.getPositionJoueurY()));
+            ctmp.add(tirerCarteDessus(joueur.getId()));
+            ctmp.add(tirerCarteDessus(joueur.getId()));
             joueur.setCarteOffer(ctmp);
         }
     }
@@ -292,7 +277,7 @@ public class Controller {
         return joueurs;
     }
 
-    public LinkedList<Carte> getCartes() {
+    public List<Carte> getCartes() {
         return cartes;
     }
 

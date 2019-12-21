@@ -16,6 +16,7 @@ public class StartRequireView extends JPanel {
     private static final int S_HEIGHT = 150;
     private static final int S_WIDTH = 300;
 
+
     public StartRequireView()
     {
         isOver = false;
@@ -45,11 +46,11 @@ public class StartRequireView extends JPanel {
         group.add(radioBtn1);
         group.add(radioBtn2);
 
-
-
         JPanel btnPanel = new JPanel(new FlowLayout());
         panel.add(btnPanel);
         JButton btn_confirm = new JButton("confirmer");
+
+
         btn_confirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

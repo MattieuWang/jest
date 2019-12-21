@@ -9,13 +9,12 @@ public class Carte {
     //////
     private String imageLocation;
 
-    public Carte(Integer id, int carteType,Integer valeur,String trophie, String imageLocation) {
+    public Carte(Integer id, int carteType,Integer valeur,String trophie) {
         this.id = id;
         this.coleur = carteType;
         this.trophie = trophie;
         this.valeur = valeur;
         this.joueurId = 0;
-        this.imageLocation = imageLocation;
     }
 
     public Carte(CarteTypes carteTypes)
@@ -30,25 +29,23 @@ public class Carte {
     @Override
     public String toString() {
         String msg = "";
-        if (valeur != 0 && valeur != 1)
+        if (coleur == 4)
+            msg += "SPADE";
+        if (coleur == 3)
+            msg += "CLUB";
+        if (coleur == 2)
+            msg += "DIAMOND";
+        if (coleur == 1)
+            msg += "HEART";
+        if (coleur == 0)
+            msg += "JOKER";
+
+        if (valeur != 0)
         {
             msg += " "+valeur;
         }
-        if (valeur == 1)
-        	msg += " As";
-        
-        if (coleur == 4)
-            msg += " de Pique";
-        if (coleur == 3)
-            msg += " de Trèfle";
-        if (coleur == 2)
-            msg += " de Carreau";
-        if (coleur == 1)
-            msg += " de Coeur";
-        if (coleur == 0)
-            msg += " JOKER";
-        
-        msg += " avec le trophée " + trophie;
+
+        msg += " "+trophie;
 
         return msg;
 
@@ -90,15 +87,15 @@ public class Carte {
         return valeur;
     }
 
-    public String getImageLocation() {
-		return imageLocation;
-	}
-
-	public void setImageLocation(String imageLocation) {
-		this.imageLocation = imageLocation;
-	}
-
-	public void setValeur(Integer valeur) {
+    public void setValeur(Integer valeur) {
         this.valeur = valeur;
+    }
+
+    public String getImageLocation() {
+        return imageLocation;
+    }
+
+    public void setImageLocation(String imageLocation) {
+        this.imageLocation = imageLocation;
     }
 }
