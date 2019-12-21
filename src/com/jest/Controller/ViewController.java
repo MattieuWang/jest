@@ -1,13 +1,16 @@
 package com.jest.Controller;
 import com.jest.carte.Carte;
 import com.jest.models.CardModel;
+import com.jest.models.JoueurBref;
 import com.jest.views.BackgroundView;
+import com.jest.views.ChoixView;
 import com.jest.views.FinDeJeuView;
 import com.jest.views.StartRequireView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class ViewController {
@@ -17,13 +20,10 @@ public class ViewController {
     private BackgroundView bgView;
     private LinkedList<CardModel> cdModels;
     private StartRequireView startRequireView;
+    private ChoixView choixView;
     private FinDeJeuView finDeJeuView;
     private JButton btn_start;
     private CardModel cardRef;
-
-
-
-	private Controller c = Controller.getInstance();
     public static final int WIDTH = 1400;
     public static final int HEIGHT = 800;
 
@@ -39,15 +39,17 @@ public class ViewController {
         initViews();
         frame.setContentPane(layeredPane);
         frame.setVisible(true);
-        initCartesModels(c.getCartes());
-        
+//        initCartes();
     }
-    public void initCartesModels(LinkedList<Carte> cartes) {
-    	LinkedList<CardModel> cardMod = new LinkedList<CardModel>();
-    	for(Carte carte : cartes) {
-    		cardMod.add(new CardModel((new ImageIcon(carte.getImageLocation())).getImage(), carte));
-    	}
+    public void initCartes(LinkedList<Carte> cartes)
+    {
+        LinkedList<CardModel> cardModels = new LinkedList<>();
+        for (Carte carte : cartes)
+        {
+            cardModels.add(new CardModel((new ImageIcon(carte.getImageLocation())).getImage(),carte));
+        }
     }
+
 
     public static ViewController getInstance()
     {
@@ -65,10 +67,10 @@ public class ViewController {
         bgView = new BackgroundView(WIDTH,HEIGHT);
         startRequireView = new StartRequireView();
         finDeJeuView = new FinDeJeuView();
-
+        choixView = new ChoixView();
         //
         initStartRequireView();
-        //
+        initChoixView();
         //
         //
         initFinDeJeuView();
@@ -78,8 +80,10 @@ public class ViewController {
     public void initTous()
     {
         startRequireView.setNbJoueurs(0);
+        choixView.initView();
         finDeJeuView.initData();
         finDeJeuView.initNext();
+        cardRef.setVisible(false);
     }
 
 
@@ -87,7 +91,6 @@ public class ViewController {
     {
         layeredPane.add(bgView,0,0);
         cardRef = new CardModel((new ImageIcon("src/images/cardRef.jpg")).getImage());
-//        cardRef.setBounds(WIDTH/2 - cardRef.getW()/2,HEIGHT/2 - cardRef.getH()/2,cardRef.getW(),cardRef.getH());
         cardRef.setPosition(0,0);
         cardRef.setVisible(false);
         layeredPane.add(cardRef,1,5);
@@ -102,7 +105,7 @@ public class ViewController {
                 layeredPane.getComponent(layeredPane.getIndexOf(btn_start)).setVisible(false);
             }
         });
-        btn_start.setBounds(550,300,100,50);
+        btn_start.setBounds(WIDTH/2 - 50,HEIGHT/2-25,100,50);
         layeredPane.add(btn_start,1,1);
 
         layeredPane.add(startRequireView.getPanel(),1,2);
@@ -112,12 +115,42 @@ public class ViewController {
     public void doStartRequire()
     {
         btn_start.setVisible(true);
+        while (!startRequireView.isOver())
+        {
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+//        cardRef.setPosition(WIDTH/2 - cardRef.getW()/2,HEIGHT/2 - cardRef.getH()/2 - 150);
+//        cardRef.setVisible(true);
     }
-    public void finishStartRequire()
+
+    private void initChoixView()
     {
-        cardRef.setPosition(WIDTH/2 - cardRef.getW(),HEIGHT/2 - cardRef.getH()/2);
-        cardRef.setVisible(true);
+        layeredPane.add(choixView.getPanel(),10,3);
     }
+
+    public void doChoixView()
+    {
+        choixView.getPanel().setVisible(true);
+        while (!choixView.isOver())
+        {
+            try {
+//                System.out.println("do choix view");
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public ArrayList<JoueurBref> getJoueurChoix()
+    {
+        return choixView.getJoueurs();
+    }
+
 
     private void initFinDeJeuView()
     {
@@ -132,7 +165,6 @@ public class ViewController {
         }
         finDeJeuView.getPanel().setVisible(true);
 
-        Thread thread = new Thread();
         while (!finDeJeuView.isNext())
         {
             try {
@@ -143,16 +175,6 @@ public class ViewController {
             }
         }
         initTous();
-    }
-    public void afficherCarte(Carte carte, int x, int y) {
-    	CardModel cm = new CardModel(new ImageIcon(carte.getImageLocation()).getImage(), carte);
-    	cm.setPosition(x, y);
-    	layeredPane.add(cm,1,5);
-    }
-    public void afficherCarteCache(Carte carte,int x, int y) {
-    	CardModel cm = new CardModel(new ImageIcon("src/images/face_cachee.png").getImage(), carte);
-    	cm.setPosition(x, y);
-    	layeredPane.add(cm,1,5);
     }
 
 
@@ -165,7 +187,4 @@ public class ViewController {
     public JFrame getFrame() {
         return frame;
     }
-    public CardModel getCardRef() {
-		return cardRef;
-	}
 }
