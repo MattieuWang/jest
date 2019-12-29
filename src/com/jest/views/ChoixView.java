@@ -4,12 +4,11 @@ import com.jest.Controller.ViewController;
 import com.jest.models.JoueurBref;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.text.View;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 public class ChoixView extends JPanel {
@@ -140,9 +139,27 @@ public class ChoixView extends JPanel {
         for (JoueurBref j : joueurs)
         {
             JPanel joueurPanel = new JPanel(new GridLayout(1,3));
-            JLabel jname = new JLabel(j.getName());
+//            JLabel jname = new JLabel(j.getName());
+            JTextField jname = new JTextField(j.getName(),15);
             JLabel jtype = null;
             JComboBox comboBox = null;
+
+            jname.addKeyListener(new KeyListener() {
+                @Override
+                public void keyTyped(KeyEvent e) {
+
+                }
+
+                @Override
+                public void keyPressed(KeyEvent e) {
+
+                }
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+                    j.setName(jname.getText());
+                }
+            });
 
             if (j.getType() == 0)
             {
