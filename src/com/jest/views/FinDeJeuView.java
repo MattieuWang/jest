@@ -38,9 +38,7 @@ public class FinDeJeuView extends JPanel implements Runnable{
         panel = new JPanel(new BorderLayout(5,0));
         panel.setBounds(ViewController.WIDTH/2 - FIN_WIDTH/2,ViewController.HEIGHT/2 - FIN_HEIGHT/2,FIN_WIDTH,FIN_HEIGHT);
         panelTable = new JPanel(new BorderLayout());
-//        panelBtn = new JPanel(new BorderLayout(0,0));
         panelBtn = new JPanel(new FlowLayout(FlowLayout.CENTER,10,0));
-
         next = false;
 
     }
@@ -48,8 +46,10 @@ public class FinDeJeuView extends JPanel implements Runnable{
 
     public void addData(String joueurNom, int note)
     {
+
         data[index][0] = joueurNom;
         data[index][1] = note;
+//        System.out.println((String)data[index][0]+(Integer)data[index][1]);
         index++;
     }
     public void initData()
