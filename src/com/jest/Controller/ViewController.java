@@ -73,6 +73,7 @@ public class ViewController {
         startRequireView = new StartRequireView();
         finDeJeuView = new FinDeJeuView();
         choixView = new ChoixView();
+
         //
         initStartRequireView();
         initChoixView();
@@ -84,11 +85,17 @@ public class ViewController {
 
     public void initTous()
     {
+        layeredPane.removeAll();
+        choixView = new ChoixView();
+
         startRequireView.setNbJoueurs(0);
-        choixView.initView();
+        initStartRequireView();
+//        choixView.initView();
+        initChoixView();
+        finDeJeuView = new FinDeJeuView();
         finDeJeuView.initData();
         finDeJeuView.initNext();
-//        cardRef.setVisible(false);
+        cardRef.setVisible(false);
     }
 
 
@@ -134,6 +141,7 @@ public class ViewController {
     private void initChoixView()
     {
         layeredPane.add(choixView.getPanel(),10,3);
+        choixView.setVisible(true);
     }
 
     public void doChoixView()
@@ -165,13 +173,19 @@ public class ViewController {
 
     private void initFinDeJeuView()
     {
+
         layeredPane.add(finDeJeuView.getPanel(),10,10);     // le niveau doit etre change apres.
     }
 
     public void doFinDeJeu(Object [][] resultat)
     {
+        System.out.println("---------------------------------------------");
+        layeredPane.add(finDeJeuView.getPanel(),100,10);
+        finDeJeuView.setVisible(true);
+//        System.out.println(resultat.length);
         for (int i=0;i<resultat.length;i++)
         {
+//            System.out.println((String)resultat[i][0]+(Integer)resultat[i][1]);
             finDeJeuView.addData((String)resultat[i][0],(Integer)resultat[i][1]);
         }
         finDeJeuView.getPanel().setVisible(true);
@@ -205,7 +219,7 @@ public class ViewController {
 
     public static void afficherCarteDeJoueur(Joueur joueur)
     {
-        System.out.println("afficher les cartes");
+//        System.out.println("afficher les cartes");
         int init_x = 0;
         int init_y = 0;
         int index = 20;
