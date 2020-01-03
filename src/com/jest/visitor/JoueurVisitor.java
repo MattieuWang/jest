@@ -20,6 +20,7 @@ public class JoueurVisitor implements Visitor {
         int nb_heart = 0;
         int nb_pas_ace = 0;
         int nb_ace = 0;
+        int ace_coleur = 0;
 
         int value_club = 0;
         int value_diam = 0;
@@ -50,8 +51,10 @@ public class JoueurVisitor implements Visitor {
                 nb_heart++;
             if (carte.getValeur() != 1)
                 nb_pas_ace++;
-            if (carte.getValeur() == 1)
+            if (carte.getValeur() == 1) {
                 nb_ace++;
+                ace_coleur = carte.getColeur();
+            }
             if (carte.getValeur() == 2)
                 nb_2++;
             if (carte.getValeur() == 3)
@@ -110,10 +113,16 @@ public class JoueurVisitor implements Visitor {
             }
         }
         // ACE
-        if (nb_pas_ace == 0)
+        if (nb_ace == 1)
         {
-            jest_valeur = 12;
-            face_valeur += 4 * nb_ace;
+            if (avecJoker && ace_coleur == 1 && nb_heart < 4)
+            {
+                jest_valeur -= 4;
+            }
+            if (ace_coleur == 2)
+                jest_valeur -= 4;
+            if (ace_coleur == 3 || ace_coleur == 4)
+                jest_valeur += 4;
         }
 
 

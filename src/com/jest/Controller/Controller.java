@@ -18,7 +18,8 @@ public class Controller {
     private ArrayList<Carte> trophies;
     private int noteMax = 0;
     private static int foisGagne[] = new int[4];
-    private Object[][] resultat = new Object[4][2];
+    private Object[][] resultat;
+//    private Object[][] resultat = new Object[4][2];
 
     private JoueurVisitor visitor = new JoueurVisitor();
     private Comparateur comparateur = new Comparateur();
@@ -58,7 +59,7 @@ public class Controller {
     {
         for(CarteTypes c : CarteTypes.values())
         {
-            cartes.add(new Carte(c.getId(),c.getCouleur(),c.getValeur(),c.getTrophie()));
+            cartes.add(new Carte(c.getId(),c.getCouleur(),c.getValeur(),c.getTrophie(),c.getImageLocation()));
         }
     }
 
@@ -103,6 +104,8 @@ public class Controller {
             ctmp.add(tirerCarteDessus(joueur.getId()));
             ctmp.add(tirerCarteDessus(joueur.getId()));
             joueur.setCarteOffer(ctmp);
+            ////////////////////////////////////
+//            ViewController.afficherCarteDeJoueur(joueur);
         }
     }
 
@@ -235,11 +238,13 @@ public class Controller {
         for (Joueur joueur:joueurs)
         {
             System.out.println(joueur.getName()+" "+joueur.getGagne());
+            ViewController.afficherCarteDeJoueur(joueur);
         }
     }
 
     public Object[][] getResultat()
     {
+        resultat = new Object[joueurs.size()][2];
         for (int i=0;i<joueurs.size();i++)
         {
             for (int j=1;j<joueurs.size();j++)

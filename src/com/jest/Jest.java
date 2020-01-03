@@ -8,9 +8,7 @@ import com.jest.models.JoueurBref;
 import com.jest.strategy.DonneeStrategy;
 import com.jest.strategy.RandomStrategy;
 import com.jest.strategy.Strategy;
-
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Jest {
     public static void main(String[] args) throws Throwable {
@@ -43,12 +41,14 @@ public class Jest {
             if (nbJoueur == 2) {
                 trophie.add(controller.tirerCarteDessus(0));
                 trophie.add(controller.tirerCarteDessus(0));
+                ViewController.afficherTrophie(trophie);
 //
 //                controller.initJoueur("joueur1");
 //                controller.initJoueurVirtuel("jv1", strategy);
 //                controller.initJoueurVirtuel("jv2", strategy1);
             } else if (nbJoueur == 3) {
                 trophie.add(controller.tirerCarteDessus(0));
+                ViewController.afficherTrophie(trophie);
 //                controller.initJoueur("joueur1");
 //                controller.initJoueurVirtuel("jv1", strategy);
 //                controller.initJoueurVirtuel("jv2", strategy1);

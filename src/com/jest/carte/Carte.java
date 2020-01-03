@@ -9,12 +9,13 @@ public class Carte {
     //////
     private String imageLocation;
 
-    public Carte(Integer id, int carteType,Integer valeur,String trophie) {
+    public Carte(Integer id, int carteType,Integer valeur,String trophie, String imageLocation) {
         this.id = id;
         this.coleur = carteType;
         this.trophie = trophie;
         this.valeur = valeur;
         this.joueurId = 0;
+        this.imageLocation = imageLocation;
     }
 
     public Carte(CarteTypes carteTypes)
@@ -24,6 +25,7 @@ public class Carte {
         this.trophie = carteTypes.getTrophie();
         this.joueurId = 0;
         this.id = carteTypes.getId();
+        this.imageLocation = carteTypes.getImageLocation();
     }
 
     @Override

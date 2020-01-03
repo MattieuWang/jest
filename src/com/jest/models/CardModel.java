@@ -12,7 +12,7 @@ public class CardModel extends JPanel {
     private int y;
     private int w;
     private int h;
-    private static final int SCALE = 7;
+    private static final int SCALE = 4;
 
     public CardModel(Image image, Carte carte) {
         this.carte = carte;
@@ -21,7 +21,19 @@ public class CardModel extends JPanel {
         this.image = image;
         this.w = image.getWidth(null)/SCALE;
         this.h = image.getHeight(null)/SCALE;
+        setBounds(x,y,w,h);
     }
+
+    public CardModel(Carte carte,int x,int y) {
+        this.carte = carte;
+        this.x=x;
+        this.y=y;
+        this.image = new ImageIcon(carte.getImageLocation()).getImage();
+        this.w = image.getWidth(null)/SCALE;
+        this.h = image.getHeight(null)/SCALE;
+        setBounds(x,y,w,h);
+    }
+
 
     public CardModel(Image image) {
         this.x=0;

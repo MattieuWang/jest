@@ -4,9 +4,6 @@ import com.jest.Controller.ViewController;
 import com.jest.models.JoueurBref;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.text.View;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -66,7 +63,7 @@ public class ChoixView extends JPanel {
                     joueurs.add(new JoueurBref(0,"joueurP"+nbJP,0));
                     nbJP++;
                     updateListePanel();
-                    System.out.println(joueurs.size());
+//                    System.out.println(joueurs.size());
 //                    listerJoueurs();
                 }
             }
@@ -81,7 +78,7 @@ public class ChoixView extends JPanel {
                     joueurs.add(new JoueurBref(1,"joueurV"+nbJV,1));
                     nbJV++;
                     updateListePanel();
-                    listerJoueurs();
+//                    listerJoueurs();
                 }
             }
         });
@@ -99,7 +96,7 @@ public class ChoixView extends JPanel {
                     }
                     joueurs.remove(joueurs.size() - 1);
                     updateListePanel();
-                    listerJoueurs();
+//                    listerJoueurs();
                 }
             }
         });

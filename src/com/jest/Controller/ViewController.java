@@ -1,5 +1,6 @@
 package com.jest.Controller;
 import com.jest.carte.Carte;
+import com.jest.joueur.Joueur;
 import com.jest.models.CardModel;
 import com.jest.models.JoueurBref;
 import com.jest.views.BackgroundView;
@@ -16,7 +17,7 @@ import java.util.LinkedList;
 public class ViewController {
     private JFrame frame;
 //    private ViewManager views;
-    private JLayeredPane layeredPane;
+    private static JLayeredPane layeredPane;
     private BackgroundView bgView;
     private LinkedList<CardModel> cdModels;
     private StartRequireView startRequireView;
@@ -26,6 +27,10 @@ public class ViewController {
     private CardModel cardRef;
     public static final int WIDTH = 1400;
     public static final int HEIGHT = 800;
+    private static int ref_x;
+    private static int ref_y;
+    private static int ref_h;
+    private static int ref_w;
 
     private static ViewController viewController = null;
 
@@ -83,17 +88,17 @@ public class ViewController {
         choixView.initView();
         finDeJeuView.initData();
         finDeJeuView.initNext();
-        cardRef.setVisible(false);
+//        cardRef.setVisible(false);
     }
 
 
     private void initStartRequireView()
     {
         layeredPane.add(bgView,0,0);
-        cardRef = new CardModel((new ImageIcon("src/images/cardRef.jpg")).getImage());
+        cardRef = new CardModel((new ImageIcon("src/images/cardRef.png")).getImage());
         cardRef.setPosition(0,0);
         cardRef.setVisible(false);
-        layeredPane.add(cardRef,1,5);
+        layeredPane.add(cardRef,10,5);
 
 
         btn_start = new JButton("start");
@@ -123,8 +128,7 @@ public class ViewController {
                 e.printStackTrace();
             }
         }
-//        cardRef.setPosition(WIDTH/2 - cardRef.getW()/2,HEIGHT/2 - cardRef.getH()/2 - 150);
-//        cardRef.setVisible(true);
+
     }
 
     private void initChoixView()
@@ -144,6 +148,13 @@ public class ViewController {
                 e.printStackTrace();
             }
         }
+        cardRef.setPosition(WIDTH/2 - cardRef.getW()/2,HEIGHT/2 - cardRef.getH()/2 - 150);
+        cardRef.setVisible(true);
+        ref_x = cardRef.getX();
+        ref_y = cardRef.getY();
+        ref_w = cardRef.getW();
+        ref_h = cardRef.getH();
+//        cardRef.setVisible(false);
     }
 
     public ArrayList<JoueurBref> getJoueurChoix()
@@ -175,6 +186,58 @@ public class ViewController {
             }
         }
         initTous();
+    }
+
+
+    public static void afficherTrophie(ArrayList<Carte> trophie)
+    {
+        int intervalle = 10;
+        int x = ref_x-ref_w-intervalle;
+        int index = 0;
+        for (Carte carte : trophie)
+        {
+            CardModel cardModel = new CardModel(carte,x,ref_y);
+            layeredPane.add(cardModel,10,index++);
+            x = ref_x + ref_w + 10;
+        }
+    }
+
+
+    public static void afficherCarteDeJoueur(Joueur joueur)
+    {
+        System.out.println("afficher les cartes");
+        int init_x = 0;
+        int init_y = 0;
+        int index = 20;
+        if (joueur.getId() == 1)
+        {
+            init_x = 300;
+            init_y = 600;
+        }
+        else if (joueur.getId() == 2)
+        {
+            init_x = 50;
+            init_y = 300;
+        }
+        else if (joueur.getId() == 3)
+        {
+            init_x = 900;
+            init_y = 400;
+        }
+        else if (joueur.getId() == 4)
+        {
+            init_x = 300;
+            init_y = 50;
+        }
+        for (Carte carte : joueur.getJest())
+        {
+            CardModel cardModel = new CardModel(carte,init_x,init_y);
+            init_x += 100;
+            cardModel.setVisible(true);
+            layeredPane.add(cardModel,10,index);
+            index++;
+        }
+
     }
 
 
