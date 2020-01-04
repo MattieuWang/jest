@@ -25,30 +25,29 @@ public class Carte {
         this.trophie = carteTypes.getTrophie();
         this.joueurId = 0;
         this.id = carteTypes.getId();
+        this.imageLocation = carteTypes.getImageLocation();
     }
 
     @Override
     public String toString() {
         String msg = "";
-        if (valeur != 0 && valeur != 1)
+        if (coleur == 4)
+            msg += "SPADE";
+        if (coleur == 3)
+            msg += "CLUB";
+        if (coleur == 2)
+            msg += "DIAMOND";
+        if (coleur == 1)
+            msg += "HEART";
+        if (coleur == 0)
+            msg += "JOKER";
+
+        if (valeur != 0)
         {
             msg += " "+valeur;
         }
-        if (valeur == 1)
-        	msg += " As";
-        
-        if (coleur == 4)
-            msg += " de Pique";
-        if (coleur == 3)
-            msg += " de Trèfle";
-        if (coleur == 2)
-            msg += " de Carreau";
-        if (coleur == 1)
-            msg += " de Coeur";
-        if (coleur == 0)
-            msg += " JOKER";
-        
-        msg += " avec le trophée " + trophie;
+
+        msg += " "+trophie;
 
         return msg;
 
@@ -90,15 +89,15 @@ public class Carte {
         return valeur;
     }
 
-    public String getImageLocation() {
-		return imageLocation;
-	}
-
-	public void setImageLocation(String imageLocation) {
-		this.imageLocation = imageLocation;
-	}
-
-	public void setValeur(Integer valeur) {
+    public void setValeur(Integer valeur) {
         this.valeur = valeur;
+    }
+
+    public String getImageLocation() {
+        return imageLocation;
+    }
+
+    public void setImageLocation(String imageLocation) {
+        this.imageLocation = imageLocation;
     }
 }

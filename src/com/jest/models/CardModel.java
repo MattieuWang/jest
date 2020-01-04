@@ -12,7 +12,7 @@ public class CardModel extends JPanel {
     private int y;
     private int w;
     private int h;
-    private static final int SCALE = 5;
+    private static final int SCALE = 4;
 
     public CardModel(Image image, Carte carte) {
         this.carte = carte;
@@ -21,16 +21,30 @@ public class CardModel extends JPanel {
         this.image = image;
         this.w = image.getWidth(null)/SCALE;
         this.h = image.getHeight(null)/SCALE;
-        setBounds(x, y, w, h);
+        setBounds(x,y,w,h);
     }
 
-	public CardModel(Image image) {
+    public CardModel(Carte carte,int x,int y) {
+        this.carte = carte;
+        this.x=x;
+        this.y=y;
+        this.image = new ImageIcon(carte.getImageLocation()).getImage();
+        this.w = image.getWidth(null)/SCALE;
+        this.h = image.getHeight(null)/SCALE;
+        setBounds(x,y,w,h);
+    }
+
+
+    public CardModel(Image image) {
         this.x=0;
         this.y=0;
         this.image = image;
         this.w = image.getWidth(null)/SCALE;
         this.h = image.getHeight(null)/SCALE;
+//        setBounds(x,y,w,h);
+        setBounds(x,y,w,h);
     }
+
 
     public void setPosition(int x, int y)
     {
@@ -48,26 +62,11 @@ public class CardModel extends JPanel {
     {
         return h;
     }
-    public int getX() {
-		return x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-
 
     @Override
     public void paint(Graphics g) {
         g.drawImage(this.image,0,0,w,h,0,0,image.getWidth(null),image.getHeight(null),null);
+//        g.drawImage(this.image,x,y,null);
 
     }
 }

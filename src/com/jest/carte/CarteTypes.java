@@ -14,13 +14,9 @@ public enum CarteTypes {
     CLUB1(9,3,1,"HIGHESTSPADE","src/images/5T.PNG"),CLUB4(10,3,4,"LOWESTSPADE","src/images/4T.PNG"),
     CLUB3(11,3,3,"HIGHESTSPADE","src/images/3T.PNG"),CLUB2(12,3,2,"LOWESTSPADE", "src/images/2T.PNG"),
     DIAM1(13,2,1,"4","src/images/5C.PNG"),DIAM4(14,2,4,"BEST_JEST_NO_JOKER","src/images/4C.PNG"),
-    DIAM3(15,2,3,"LOWESTDIAM","src/images/3C.PNG"),DIAM2(16,2,2,"HIGHESTDIAM","src/images/2C.PNG")
-//    ,REFER(17,"REFER",null)
+    DIAM3(15,2,3,"LOWESTDIAM","src/images/3C.PNG"),DIAM2(16,2,2,"HIGHESTDIAM","src/images/2C.PNG")//    ,REFER(17,"REFER",null)
     ;
-
-
-
-	private Integer id;
+    private Integer id;
     private int couleur;
     private String trophie;
     private Integer valeur;
@@ -31,12 +27,12 @@ public enum CarteTypes {
 //    public static final String SPADE = "SPADE";
 //    public static final String JOKE = "JOKER";
 
-    CarteTypes(Integer id, int couleur,Integer valeur, String trophie, String imageLocation) {
+    CarteTypes(Integer id, int couleur,Integer valeur, String trophie, String location) {
         this.id = id;
         this.couleur = couleur;
         this.trophie = trophie;
         this.valeur = valeur;
-        this.imageLocation = imageLocation;
+        this.imageLocation = location;
     }
 
     public Integer getId() {
@@ -54,7 +50,8 @@ public enum CarteTypes {
     public Integer getValeur() {
         return valeur;
     }
+
     public String getImageLocation() {
-	return imageLocation;
+        return imageLocation;
     }
 }

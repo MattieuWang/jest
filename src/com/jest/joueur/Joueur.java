@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 public class Joueur {
     protected String name;
-    protected String webIp;
     protected ArrayList<Carte> carteOffer;
     protected Integer id;
     protected ArrayList<Carte> jest;
@@ -16,21 +15,16 @@ public class Joueur {
     protected ArrayList<Carte> faceup;
     protected int gagne;
     /////
-    private String imageLocation;
-    private int positionJoueurX;
-    private int positionJoueurY;
+    private String imageLocaiton;
 
-    public Joueur(Integer id, String name, String webIp, ArrayList<Carte> cartes, int x, int y) {
+    public Joueur(Integer id, String name, ArrayList<Carte> cartes) {
         this.name = name;
-        this.webIp = webIp;
         this.id = id;
         this.carteOffer = cartes;
         this.jest = new ArrayList<>();
         this.score = new Score();
         this.faceup = new ArrayList<>();
         this.gagne = 0;
-        this.positionJoueurX = x;
-        this.positionJoueurY = y;
     }
 
     public Joueur() {
@@ -68,8 +62,7 @@ public class Joueur {
     }
 
 
-
-	public Carte makeOffer()
+    public Carte makeOffer()
     {
         Scanner scanner = new Scanner(System.in);
         System.out.print(name+" ");
@@ -170,14 +163,6 @@ public class Joueur {
         this.name = name;
     }
 
-    public String getWebIp() {
-        return webIp;
-    }
-
-    public void setWebIp(String webIp) {
-        this.webIp = webIp;
-    }
-
     public Integer getId() {
         return id;
     }
@@ -234,21 +219,5 @@ public class Joueur {
 
     public void addGagne() {
         this.gagne ++;
-    }    
-    public int getPositionJoueurX() {
-		return positionJoueurX;
-	}
-
-	public void setPositionJoueurX(int positionJoueurX) {
-		this.positionJoueurX = positionJoueurX;
-	}
-
-	public int getPositionJoueurY() {
-		return positionJoueurY;
-	}
-
-	public void setPositionJoueurY(int positionJoueurY) {
-		this.positionJoueurY = positionJoueurY;
-	}
-
+    }
 }
