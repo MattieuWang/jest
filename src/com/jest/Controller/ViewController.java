@@ -154,6 +154,15 @@ public class ViewController {
     	cm.setPosition(x, y);
     	layeredPane.add(cm,1,5);
     }
+    public void afficherBoutonChoix(int x, int y) {
+    	JButton btn_select = new JButton("choix 1");
+        btn_start.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                layeredPane.getComponent(layeredPane.getIndexOf(btn_select)).setVisible(false);
+            }
+        });
+    }
 
 
     public int getNbJoueurs()
