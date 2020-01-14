@@ -19,6 +19,8 @@ public class RandomStrategy implements Strategy {
             carteOffer.set(1,carte);
         }
         joueur.addPileTest(carteOffer.get(0));    // la carte face-up
+        joueur.getCarteOffer().get(1).setVisible(false);
+        joueur.getCarteOffer().get(0).setVisible(true);
         System.out.println();
         return carteOffer.get(1);       // renenvoie la carte face-down
     }

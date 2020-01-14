@@ -41,19 +41,19 @@ public class Jest {
             if (nbJoueur == 2) {
                 trophie.add(controller.tirerCarteDessus(0));
                 trophie.add(controller.tirerCarteDessus(0));
-                ViewController.afficherTrophie(trophie);
 //
 //                controller.initJoueur("joueur1");
 //                controller.initJoueurVirtuel("jv1", strategy);
 //                controller.initJoueurVirtuel("jv2", strategy1);
             } else if (nbJoueur == 3) {
                 trophie.add(controller.tirerCarteDessus(0));
-                ViewController.afficherTrophie(trophie);
 //                controller.initJoueur("joueur1");
 //                controller.initJoueurVirtuel("jv1", strategy);
 //                controller.initJoueurVirtuel("jv2", strategy1);
 //                controller.initJoueurVirtuel("jv3", strategy1);
             }
+
+            controller.setTrophies(trophie);
 
             for (JoueurBref j : viewController.getJoueurChoix())
             {
@@ -70,8 +70,7 @@ public class Jest {
                 }
             }
 
-
-            controller.setTrophies(trophie);
+            ViewController.afficherTrophie(trophie);
 
 //        System.out.println(Arrays.toString(trophie));
 
@@ -85,10 +84,20 @@ public class Jest {
                     for (Joueur joueur : controller.getJoueurs()) {
                         joueur.ajouterCarte(controller.tirerCarteDessus(joueur.getId()));
                         joueur.ajouterCarte(controller.tirerCarteDessus(joueur.getId()));
+
+
+
                     }
+//                    viewController.doMakeOfferView(controller.getJoueurs());
                 } else {
                     controller.dealCartes();
                 }
+                for (Joueur joueur : controller.getJoueurs())
+                {
+                    ViewController.afficherCarteDeJoueur(joueur);
+                }
+                ViewController.afficherNomJoueur(controller.getJoueurs());
+
                 round++;
 
                 System.out.println("paquet de cartes: " + controller.getCartes().size());
@@ -98,9 +107,14 @@ public class Jest {
 
                 //make offer
                 controller.makeOffers();
+//                viewController.doMakeOfferView(controller.getJoueurs());
 
                 //take cards
                 controller.takeCartes();
+
+
+
+                ViewController.afficherJest(controller.getJoueurs());
 
                 controller.listerJestDeJoueur();
                 System.out.println("paquet de cartes: " + controller.getCartes().size());
@@ -108,6 +122,8 @@ public class Jest {
 
             // fin de joue
             controller.finDeJoue();
+            ViewController.afficherJestFinal(controller.getJoueurs());
+
             viewController.doFinDeJeu(controller.getResultat());
         }
     }

@@ -31,7 +31,7 @@ public class FinDeJeuView extends JPanel implements Runnable{
 
     public FinDeJeuView()
     {
-        controller = Controller.getInstance();
+
 //        viewController = ViewController.getInstance();
         index = 0;
         data = new Object[4][2];
@@ -60,6 +60,7 @@ public class FinDeJeuView extends JPanel implements Runnable{
 
     public JPanel getPanel()
     {
+        controller = Controller.getInstance();
         JButton btnRecommence = new JButton("Recommencer");
         JButton btnFinie = new JButton("Finir le jeu");
         btnFinie.setBounds(0,0,100,50);

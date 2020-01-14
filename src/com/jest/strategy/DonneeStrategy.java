@@ -85,6 +85,8 @@ public class DonneeStrategy implements Strategy {
         joueur.addPileTest(carteOffer.get(0));    // la carte face-up
         System.out.println(joueur.getName()+" choit "+carteOffer.get(0));
         System.out.println();
+        joueur.getCarteOffer().get(1).setVisible(false);
+        joueur.getCarteOffer().get(0).setVisible(true);
         return carteOffer.get(1);       // renenvoie la carte face-down
     }
 

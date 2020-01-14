@@ -31,7 +31,7 @@ public class StartRequireView extends JPanel {
         JPanel radioBtnPanel = new JPanel();
         panel.add(txtPanel);
         panel.add(radioBtnPanel);
-        JLabel txtLable = new JLabel("Choix: ");
+        JLabel txtLable = new JLabel("Choisissez le nombre de joueurs: ");
         txtPanel.setLayout(new FlowLayout());
         txtPanel.add(txtLable);
 

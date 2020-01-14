@@ -19,8 +19,6 @@ public class Controller {
     private int noteMax = 0;
     private static int foisGagne[] = new int[4];
     private Object[][] resultat;
-//    private Object[][] resultat = new Object[4][2];
-
     private JoueurVisitor visitor = new JoueurVisitor();
     private Comparateur comparateur = new Comparateur();
 
@@ -76,14 +74,14 @@ public class Controller {
     {
         nbJoueurDansJeu++;
         ArrayList<Carte> c = new ArrayList<>();
-        joueurs.add(new Joueur(joueurs.size()+1,joueurName,c));
+        joueurs.add(new Joueur(joueurs.size()+1,joueurName,c,0));
     }
 
     public void initJoueurVirtuel(String joueurName, Strategy strategy)
     {
         nbJoueurDansJeu++;
         ArrayList<Carte> c = new ArrayList<>();
-        joueurs.add(new JoueurVirtuel(joueurs.size()+1,joueurName,c,strategy));
+        joueurs.add(new JoueurVirtuel(joueurs.size()+1,joueurName,c,strategy,1));
     }
 
     public void dealCartes()
@@ -93,11 +91,13 @@ public class Controller {
         for (Joueur joueur : joueurs)
         {
             cartes.add(joueur.getCarteOffer().get(0));      // supprose que le 1er carte dans carteOffer est "face up"
+            joueur.getCarteOffer().get(0).setVisible(false);
 //            System.out.println("recycle face up carte-------"+joueur.getCarteOffer().get(0));
             joueur.enleverCartesOffer();                      // enleve tous les cartes dans cartesOffer, 1er est "faceup" 2eme est met comme jest
         }
 
         // diffuser 2 cartes a chaque joueur
+        ViewController.clearCardsOnTable();
         for (Joueur joueur : joueurs)
         {
             ArrayList<Carte> ctmp = new ArrayList<>();      // cartes temporelles
@@ -113,8 +113,10 @@ public class Controller {
     {
         for (Joueur joueur : joueurs)
         {
+//            viewController.doMakeOfferView(joueur);
             cartesOffer.add(joueur.makeOffer());
         }
+        ViewController.makeOfferViewFini(joueurs);
     }
 
 
@@ -238,8 +240,9 @@ public class Controller {
         for (Joueur joueur:joueurs)
         {
             System.out.println(joueur.getName()+" "+joueur.getGagne());
-            ViewController.afficherCarteDeJoueur(joueur);
         }
+        ViewController.afficherJestFinal(joueurs);
+
     }
 
     public Object[][] getResultat()
@@ -247,7 +250,7 @@ public class Controller {
         resultat = new Object[joueurs.size()][2];
         for (int i=0;i<joueurs.size();i++)
         {
-            for (int j=1;j<joueurs.size();j++)
+            for (int j=i;j<joueurs.size();j++)
             {
                 if (joueurs.get(i).getScore().getJest_valeur() < joueurs.get(j).getScore().getJest_valeur())
                 {

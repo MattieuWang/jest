@@ -8,6 +8,7 @@ public class Carte {
     private Integer joueurId;
     //////
     private String imageLocation;
+    private boolean visible;
 
     public Carte(Integer id, int carteType,Integer valeur,String trophie, String imageLocation) {
         this.id = id;
@@ -16,6 +17,7 @@ public class Carte {
         this.valeur = valeur;
         this.joueurId = 0;
         this.imageLocation = imageLocation;
+        visible = false;
     }
 
     public Carte(CarteTypes carteTypes)
@@ -51,6 +53,14 @@ public class Carte {
 
         return msg;
 
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
+
+    public boolean isVisible() {
+        return visible;
     }
 
     public String getTrophie() {

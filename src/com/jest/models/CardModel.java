@@ -12,7 +12,8 @@ public class CardModel extends JPanel {
     private int y;
     private int w;
     private int h;
-    private static final int SCALE = 4;
+    public static final int SCALE = 8;
+
 
     public CardModel(Image image, Carte carte) {
         this.carte = carte;
@@ -46,12 +47,19 @@ public class CardModel extends JPanel {
     }
 
 
+    public void setScale(int scale)
+    {
+        w = image.getWidth(null) / scale;
+        h = image.getHeight(null) / scale;
+        setBounds(x,y,w,h);
+    }
+
     public void setPosition(int x, int y)
     {
         this.x = x;
         this.y = y;
         setBounds(x,y,w,h);
-        System.out.println(x+"  "+y);
+//        System.out.println(x+"  "+y);
     }
 
     public int getW()
@@ -61,6 +69,28 @@ public class CardModel extends JPanel {
     public int getH()
     {
         return h;
+    }
+
+    public Carte getCarte() {
+        return carte;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public void setVisi(boolean visi)
+    {
+        if (visi)
+        {
+            image = new ImageIcon(carte.getImageLocation()).getImage();
+            carte.setVisible(true);
+        }
+        else
+        {
+            image = new ImageIcon("src/images/cachee.png").getImage();
+            carte.setVisible(false);
+        }
     }
 
     @Override

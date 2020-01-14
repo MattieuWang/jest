@@ -14,8 +14,8 @@ public class JoueurVirtuel extends Joueur {
 //    private Strategy strategy = new DonneeStrategy();
     private Strategy strategy;
 
-    public JoueurVirtuel(Integer id, String name,  ArrayList<Carte> cartes,Strategy strategy) {
-        super(id, name, cartes);
+    public JoueurVirtuel(Integer id, String name,  ArrayList<Carte> cartes,Strategy strategy,int type) {
+        super(id, name, cartes,type);
         this.strategy = strategy;
     }
 
